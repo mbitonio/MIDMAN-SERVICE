@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LEGEND OF YMIR DIAMOND 💎 — Midman Service</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --txt:#fff7fb; --mut:#ccb9c1; --mut2:#a8989f;
+    --green:#21d072; --blue:#1877f2; --discord:#5865f2;
+    --red1:#1a0f14; --red2:#120a10; --ink:#09060a;
+    --border: rgba(255,100,140,.18);
+    --glow-soft: 0 0 16px rgba(255,40,100,.22);
+    --chip:#222027;
+    --verified:#2aa4ff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;color:var(--txt);font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--ink);min-height:100%}
+
+  /* Background */
+  body::before{
+    content:"";position:fixed;inset:-20% -20%;z-index:-3;pointer-events:none;
+    background:
+      radial-gradient(40% 30% at 15% 10%, rgba(255,40,100,.14), transparent 60%),
+      radial-gradient(38% 28% at 85% 5%, rgba(200,20,80,.10), transparent 65%),
+      radial-gradient(55% 40% at 50% 110%, rgba(255,30,100,.10), transparent 72%);
+    filter: blur(10px) saturate(112%);
+    animation:bgFloat 16s ease-in-out infinite alternate;
+  }
+  @keyframes bgFloat{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(1.2%,-1.2%,0)}}
+  body::after{
+    content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.45;
+    background:
+      radial-gradient(circle at 18% 28%, rgba(255,80,130,.25) 0 1px, transparent 2px),
+      radial-gradient(circle at 78% 18%, rgba(255,60,110,.22) 0 1px, transparent 2px);
+    animation:spark 11s linear infinite;
+  }
+  @keyframes spark{0%{transform:translateY(0)}100%{transform:translateY(-8px)}}
+
+  .wrap{max-width:920px;margin:auto;padding:16px 14px 120px}
+  .title{display:flex;gap:10px;justify-content:space-between;align-items:center;font-weight:800;font-size:20px;letter-spacing:.4px;margin:2px 0 8px;text-shadow:0 0 10px rgba(255,70,120,.25)}
+  .titleLeft{display:flex;gap:12px;align-items:center}
+  .brandName{font-size:18px}
+  .brandSub{font-weight:600;font-size:12px;color:var(--mut);margin-left:4px}
+
+  /* Logo - NOTE: removed ring/circle per request */
+  .logoWrap{display:flex;align-items:center;gap:12px;margin:6px 0 8px}
+  .logo{width:64px;height:64px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(180deg,#000,#0b0710);cursor:pointer;overflow:hidden}
+  .logo img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+  .owner{display:flex;gap:12px;align-items:center;padding:8px 12px;border-radius:12px;background:linear-gradient(180deg,#131218,#0d0c12);border:1px solid rgba(255,255,255,.06);box-shadow:0 6px 18px rgba(0,0,0,.35);font-weight:800}
+  .ownerName{letter-spacing:.3px}
+  .metaBadge{width:20px;height:20px;display:inline-block;filter:drop-shadow(0 0 8px rgba(41,164,255,.25))}
+
+  /* Tiers */
+  .row{display:grid;gap:12px;margin-top:12px}
+  .prices{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:6px 0 10px}
+  .pill{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.00));border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center;box-shadow:inset 0 0 0 1px rgba(255,30,80,.06), var(--glow-soft);transition:transform .18s}
+  .pval{font-size:20px;font-weight:900}
+  .ptxt{font-size:12px;color:#ccb9c1}
+
+  .midmanCard{background:linear-gradient(180deg,#151018,#0f0e12);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  .midmanRow{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+
+  /* Card / Inputs */
+  .section{background:linear-gradient(180deg,var(--red1),var(--red2));border:1px solid var(--border);border-radius:14px;padding:14px;box-shadow:var(--glow-soft);margin-top:12px}
+  .label{font-size:13px;color:#ccb9c1;margin:4px 2px 6px}
+  .in{width:100%;border:1px solid rgba(255,120,160,.20);background:#0b090c;color:#fff;padding:12px;border-radius:12px;font-size:16px;outline:none;box-shadow:inset 0 0 14px rgba(255,20,80,.06)}
+  .in:focus{border-color:#ff6aa1;box-shadow:0 0 0 3px rgba(255,60,110,.12), var(--glow-soft)}
+  .hint{font-size:12px;color:#a8989f;margin-top:6px}
+  .warn{margin-top:8px;font-size:12px;color:#ff7b94;display:none}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+  .box{background:linear-gradient(180deg,#1a1218,#120e13);border:1px solid rgba(255,120,160,.18);border-radius:12px;padding:12px;text-align:center;box-shadow:var(--glow-soft)}
+  .box h5{margin:0 0 4px;font-size:12px;color:#ccb9c1}
+  .rateOut{font-weight:900;font-size:18px}
+  .saveOut{font-weight:900;font-size:18px;color:#baffd6}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:none;border-radius:12px;padding:10px 12px;font-weight:800;letter-spacing:.2px;cursor:pointer;user-select:none}
+  .buy{background:var(--green);color:#092112;font-size:16px;box-shadow:0 12px 28px rgba(33,208,114,.12);width:100%;margin-top:10px;transition:transform .12s}
+  .btn[disabled]{opacity:.55;filter:grayscale(.25);cursor:not-allowed}
+  .small{padding:8px 10px;border-radius:10px;font-weight:700}
+
+  /* Payment + socials */
+  .pay{background:linear-gradient(180deg,#11111a,#0b0c12);border:1px solid rgba(24,119,242,.18);border-radius:12px;padding:12px 14px;box-shadow:0 0 18px rgba(24,119,242,.08);margin-top:12px}
+  .gcashRow{display:flex;align-items:center;gap:12px;justify-content:space-between;background:rgba(24,119,242,.06);padding:10px 12px;border-radius:10px;max-width:100%;box-shadow:0 8px 24px rgba(24,119,242,.04)}
+  .gcashLeft{display:flex;align-items:center;gap:10px}
+  .gcashIcon{width:28px;height:28px;border-radius:8px;background:#1877f2;display:grid;place-items:center;font-weight:900;color:#fff}
+  .qrBtn{display:inline-flex;align-items:center;gap:8px;background:rgba(24,119,242,.12);color:#eaf3ff;border:1px solid rgba(24,119,242,.18);padding:8px 10px;border-radius:10px;font-weight:800}
+
+  .soc{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+  .btnlink{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:12px;padding:10px 12px;font-weight:800;letter-spacing:.2px;text-decoration:none}
+  .fb{background:var(--blue);color:#fff}
+  .dc{background:var(--discord);color:#fff}
+
+  /* Notice removed per request (Waiting Time) */
+
+  /* Track Order */
+  .track{margin-top:14px;background:linear-gradient(180deg,#151218,#100f13);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  .chip{display:inline-flex;gap:8px;align-items:center;background:var(--chip);border:1px solid rgba(255,255,255,.06);padding:8px 12px;border-radius:12px}
+
+  /* Process Steps */
+  .process{margin-top:12px;background:linear-gradient(180deg,#0f0e11,#0b0a0d);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;box-shadow:0 12px 36px rgba(0,0,0,.35)}
+  .step{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:start;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.02);margin-bottom:8px}
+  .step img{width:64px;height:64px;object-fit:cover;border-radius:8px}
+  .step h4{margin:0;font-size:14px}
+  .step p{margin:6px 0 0;color:var(--mut);font-size:13px}
+
+  /* save indicator */
+  .saved{background:linear-gradient(180deg,#062414,#063220);border-radius:8px;padding:6px 8px;font-weight:800;color:#bff3d6;border:1px solid rgba(40,255,160,.12)}
+  @media (max-width:760px){ .prices{grid-template-columns:repeat(2,1fr)} .grid2{grid-template-columns:1fr} .title{flex-direction:column;align-items:flex-start} .midmanRow{flex-direction:column;align-items:flex-start} }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="title">
+      <div class="titleLeft">
+        <div class="logoWrap">
+          <div class="logo" id="secretLogo">
+            <!-- removed ring / circle per user request -->
+            <img src="logo.png" alt="Logo">
+          </div>
+        </div>
+        <div>
+          <div class="brandName">LEGEND OF YMIR DIAMOND 💎</div>
+          <div class="brandSub">Midman Service • Secure trades & escrow</div>
+        </div>
+      </div>
+
+      <!-- Owner with verified badge & save buttons -->
+      <div style="display:flex;gap:10px;align-items:center">
+        <div class="owner">
+          <img src="owner-avatar.png" alt="Owner" style="width:36px;height:36px;border-radius:8px;object-fit:cover">
+          <div style="display:flex;flex-direction:column">
+            <span class="ownerName">MOISES TRAJANO BITONIO</span>
+            <small style="color:var(--mut);font-weight:700">Midman • Verified <svg class="metaBadge" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2aa4ff"/><stop offset="1" stop-color="#1877f2"/></linearGradient></defs><circle cx="12" cy="12" r="10" fill="url(#g2)"/><path d="M9.2 12.6l-1.7-1.7a1 1 0 10-1.4 1.4l2.4 2.4c.4.4 1 .4 1.4 0l6.1-6.1a1 1 0 10-1.4-1.4l-5.4 5.4z" fill="#fff"/></svg></small>
+          </div>
+        </div>
+
+        <div id="saveButtons" style="display:flex;gap:8px;align-items:center">
+          <button id="saveFb" class="btn small" title="Save FB & copy link">💾 Save FB</button>
+          <button id="saveDc" class="btn small" title="Save Discord & copy link">💾 Save DC</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing tiers (visual) -->
+    <div class="row prices">
+      <div class="pill midmanCard">
+        <div class="pval">Midman Fee</div>
+        <div class="ptxt">Below ₱1,000 → ₱50 • ₱1,000 and up → 5%</div>
+      </div>
+      <div class="pill">
+        <div class="pval">₱0.80</div>
+        <div class="ptxt">min 1000 💎</div>
+      </div>
+      <div class="pill">
+        <div class="pval">₱0.75</div>
+        <div class="ptxt">min 4000 💎</div>
+      </div>
+      <div class="pill">
+        <div class="pval">₱0.70</div>
+        <div class="ptxt">min 8000 💎 (BEST)</div>
+      </div>
+    </div>
+
+    <!-- Inputs -->
+    <div class="section">
+      <div class="label">Enter Diamonds 💎</div>
+      <input id="dias" class="in" inputmode="numeric" autocomplete="off" placeholder="e.g. 1500">
+
+      <div class="label" style="margin-top:10px">ENTER PHP ₱ (optional)</div>
+      <input id="phpIn" class="in" inputmode="decimal" autocomplete="off" placeholder="e.g. 500.00">
+
+      <div class="label" style="margin-top:10px">Server (Required)</div>
+      <input id="serverIn" class="in" placeholder="Type exact server (e.g., ASIA-022 / HOF1)" autocomplete="off">
+      <div class="hint">Make sure tama ang server name para iwas delay sa drop.</div>
+
+      <div id="warn" class="warn">Minimum 1000 💎 required and Server is needed.</div>
+
+      <div class="grid2" style="margin-top:10px">
+        <div class="box">
+          <h5>Rate</h5>
+          <div id="rateOut" class="rateOut">—</div>
+        </div>
+        <div class="box">
+          <h5>Midman Fee</h5>
+          <div id="midmanOut" class="saveOut">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buy -->
+    <button id="buyBtn" type="button" class="btn buy" disabled>💎 Buy (Use Midman)</button>
+    <div class="label" style="text-align:center;margin-top:8px">Enter at least 1000 dias, then type your server. Midman fee auto-calculated.</div>
+
+    <!-- Payment + Socials -->
+    <div class="pay">
+      <!-- GCash (copy only) with QR button -->
+      <div id="gcashRow" class="gcashRow" title="Tap to copy number">
+        <div class="gcashLeft">
+          <div class="gcashIcon">G</div>
+          <div>
+            <div style="font-size:13px;color:var(--mut)">GCash</div>
+            <strong id="gcashNumber">09162466318 — MOISES B.</strong>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button id="copyG" class="qrBtn">Copy</button>
+          <button id="showQR" type="button" class="qrBtn">Show QR</button>
+        </div>
+      </div>
+
+      <!-- GoTyme (copy only) -->
+      <div id="goRow" class="gcashRow" title="Tap to copy account" style="background:rgba(0,214,231,.06);margin-top:8px">
+        <div class="gcashLeft">
+          <svg width="36" height="36" viewBox="0 0 32 32" aria-hidden="true" style="border-radius:8px"><defs><linearGradient id="goTeal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00D6E7"/><stop offset="1" stop-color="#00BFD3"/></linearGradient></defs><rect x="0" y="0" width="32" height="32" rx="6" fill="url(#goTeal)"/><path d="M10.5 16a5.5 5.5 0 1 1 11 0 5.5 5.5 0 0 1-11 0z" fill="#00353A" opacity=".95"/></svg>
+          <div>
+            <div style="font-size:13px;color:var(--mut)">GoTyme</div>
+            <strong id="goNumber">014664932955 — MOISES BITONIO</strong>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button id="copyGo" class="qrBtn" style="background:rgba(0,214,231,.12)">Copy</button>
+          <button id="showGoQR" type="button" class="qrBtn" style="background:rgba(0,214,231,.12)">Show QR</button>
+        </div>
+      </div>
+
+      <div class="soc">
+        <a id="fbLink" class="btnlink fb" href="https://www.facebook.com/share/p/17MiaRJ24J/" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 5.01 3.66 9.17 8.44 9.93v-7.02H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46 h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.93z"/></svg>
+          FACEBOOK FEEDBACK
+        </a>
+        <a id="dcLink" class="btnlink dc" href="https://discord.gg/QkdVz5mh" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M20.3 4.4A16 16 0 0015.9 3l-.4.8a13.3 13.3 0 00-7 0L8.1 3A16 16 0 003.7 4.4C1.7 7.5 1 10.5 1.2 13.4a16 16 0 005.9 3l.8-1.3c-.4-.1-.7-.3-1-.4.1-.1.2-.2.3-.3 1.9.9 4 .9 5.9 0l.3.3c-.3.2-.6.3-1 .4l.8 1.3a16 16 0 005.9-3c.3-3-.5-5.9-2.8-9zM9.6 13c-.9 0-1.6-.8-1.6-1.7S8.7 9.6 9.6 9.6s1.6.8 1.6 1.7S10.5 13 9.6 13zm4.8 0c-.9 0-1.6-.8-1.6-1.7s.7-1.7 1.6-1.7 1.6.8 1.6 1.7-.7 1.7-1.6 1.7z"/></svg>
+          DISCORD FEEDBACK
+        </a>
+      </div>
+    </div>
+
+    <!-- Midman instructions & format (user-provided content rendered nicely) -->
+    <div class="process">
+      <h3 style="margin:0 0 10px">📦 BEFORE SENDING PAYMENT (READ FIRST)</h3>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+        <div class="midmanCard" style="padding:10px">
+          <strong>SELLER:</strong>
+          <div style="color:var(--mut);margin-top:6px">
+            ✅ Send <strong>VALID ID + Selfie + Current Address</strong> (via DM)<br>
+            ✅ No dummy / fake Facebook accounts
+          </div>
+        </div>
+
+        <div class="midmanCard" style="padding:10px">
+          <strong>💸 MIDMAN FEE</strong>
+          <div style="color:var(--mut);margin-top:6px">
+            • Below ₱1,000 → ₱50<br>• ₱1,000 and up → 5%
+          </div>
+        </div>
+
+        <div class="midmanCard" style="padding:10px">
+          <strong>GCASH DETAILS</strong>
+          <div style="color:var(--mut);margin-top:6px">📱 09162466318<br>👤 MOISES TRAJANO BITONIO</div>
+        </div>
+      </div>
+
+      <h4 style="margin:8px 0">🛡️ MIDMAN PROCESS (Step-by-Step)</h4>
+
+      <!-- Steps with placeholder images (replace stepX.png with your images) -->
+      <div class="step">
+        <img src="step1.png" alt="Step 1">
+        <div>
+          <h4>Step 1 — Buyer pays midman</h4>
+          <p>Buyer sends payment to midman (GCash / GoTyme). Midman confirms payment before instructing seller.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <img src="step2.png" alt="Step 2">
+        <div>
+          <h4>Step 2 — Seller sends account details</h4>
+          <p>Seller sends Gmail & password to the buyer via DM (only after midman confirms payment).</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <img src="step3.png" alt="Step 3">
+        <div>
+          <h4>Step 3 — Buyer checks the account</h4>
+          <p>Buyer logs into the account and verifies in-game before saying DONE.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <img src="step4.png" alt="Step 4">
+        <div>
+          <h4>Step 4 — Recovery & security</h4>
+          <p>Buyer gives recovery email & phone to the seller. Seller adds them and turns ON 2-step verification.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <img src="step5.png" alt="Step 5">
+        <div>
+          <h4>Step 5 — Seller provides video proof</h4>
+          <p>Seller provides video logs: logging out, removing Gmail from devices, etc., as proof of transfer.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <img src="step6.png" alt="Step 6">
+        <div>
+          <h4>Step 6 — Midman releases payment</h4>
+          <p>Once buyer confirms the account is secure, midman releases the payment to seller.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:8px;color:var(--mut);font-size:13px">
+        <strong>⚠️ REMINDERS:</strong><br>
+        • Gmail can still be recovered within 7–8 days.<br>
+        • If the seller tries to recover the Gmail, they’ll be posted in groups.<br>
+        • MM fee is non-refundable if the deal is canceled.<br>
+        • Midman is not responsible for accounts linked to multiple socials/devices.<br>
+        • Always double-check everything before saying DONE.
+      </div>
+    </div>
+
+    <!-- Track Order (kept) -->
+    <div class="track">
+      <div class="label" style="margin-bottom:6px">Track Order</div>
+      <div style="display:grid;grid-template-columns:1fr auto;gap:10px">
+        <input id="trackIn" class="in" placeholder="Enter Receipt ID (e.g., YMIR-XXXX)" autocomplete="off">
+        <button id="trackBtn" class="btn small" style="background:#27252c;color:#fff">Check</button>
+      </div>
+      <div id="trackOut" style="margin-top:10px;display:none">
+        <div class="chip" style="margin-bottom:8px">
+          <strong id="t_id">—</strong>
+          <span id="t_status" style="opacity:.9"></span>
+        </div>
+        <div style="display:grid;gap:6px;font-size:14px;color:#ccb9c1">
+          <div>Server: <span id="t_server" style="color:#fff"></span></div>
+          <div>Diamonds: <span id="t_qty" style="color:#fff"></span> 💎</div>
+          <div>Rate: <span id="t_rate" style="color:#fff"></span></div>
+          <div>Total: <span id="t_total" style="color:#fff"></span></div>
+          <div>Created: <span id="t_time" style="color:#fff"></span></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+          <button id="btnPaid" class="btn small" style="background:#204c2f;color:#e7fff1">Buyer: I Paid</button>
+        </div>
+        <div class="hint" style="margin-top:6px">
+          Tip: Buyer taps <b>I Paid</b> after sending payment. (Local tracking only)
+        </div>
+      </div>
+      <div id="trackNone" class="hint" style="display:none;margin-top:8px">Walang record sa device na ’to. Note: Tracking works on the same phone/browser (local only).</div>
+    </div>
+  </div>
+
+  <!-- Modals (kept) -->
+  <div id="buyPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);place-items:center;z-index:50;display:none">
+    <div style="width:min(92vw,520px);background:#0f0d10;border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center">
+      <h3>Copied ✔</h3>
+      <p id="buyMsg"><strong>I-PASTE MO ITO SA MESSENGER KO.</strong><br>Open Messenger then paste the order message.</p>
+      <div id="buyOrderId" style="margin:10px 0 6px;font-weight:800"></div>
+      <button id="closePop" class="btn" style="background:#272327;color:#fff;width:160px;margin:auto">OK</button>
+    </div>
+  </div>
+
+  <div id="gcashPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);place-items:center;z-index:50">
+    <div style="width:min(92vw,520px);background:#0f0d10;border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center">
+      <h3>GCash number copied ✔</h3>
+      <p><strong>09162466318 — MOISES B.</strong><br>Paste sa GCash Express Send.</p>
+      <button id="gcashOk" class="btn" style="background:#272327;color:#fff;width:160px;margin:auto">OK</button>
+    </div>
+  </div>
+
+  <div id="qrPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);place-items:center;z-index:50">
+    <div style="width:min(92vw,520px);background:#0f0d10;border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center">
+      <h3>GCash QR</h3>
+      <p>Scan to pay • <strong>MOISES B.</strong></p>
+      <img src="gcash-qr.png" alt="GCash QR" style="max-width:86vw;max-height:60vh;border-radius:12px;border:1px solid rgba(255,255,255,.06)">
+      <div style="margin-top:12px">
+        <button id="qrOk" class="btn" style="background:#272327;color:#fff;width:160px;margin:auto">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="goPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);place-items:center;z-index:50">
+    <div style="width:min(92vw,520px);background:#0f0d10;border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center">
+      <h3>GoTyme account copied ✔</h3>
+      <p><strong>014664932955 — MOISES BITONIO</strong><br>Paste sa GoTyme Send Money.</p>
+      <button id="goOk" class="btn" style="background:#272327;color:#fff;width:160px;margin:auto">OK</button>
+    </div>
+  </div>
+
+  <div id="goQRPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);place-items:center;z-index:50">
+    <div style="width:min(92vw,520px);background:#0f0d10;border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center">
+      <h3>GoTyme QR</h3>
+      <p>Scan to pay • <strong>MOISES BITONIO</strong></p>
+      <img src="gotyme-qr.png" alt="GoTyme QR" style="max-width:86vw;max-height:60vh;border-radius:12px;border:1px solid rgba(255,255,255,.06)">
+      <div style="margin-top:12px">
+        <button id="goQROk" class="btn" style="background:#272327;color:#fff;width:160px;margin:auto">Close</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  /* Helpers */
+  const $ = id => document.getElementById(id);
+  const clean = v => String(v ?? '').replace(/[^\d.]/g,'');
+  const toInt = v => { const m = clean(v).match(/^\d+/); return m? parseInt(m[0],10):0; };
+  const toNum = v => { const m = clean(v).match(/^\d+(?:\.\d+)?/); return m? parseFloat(m[0]):0; };
+  const fmt = n => Number(n).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2});
+
+  /* Tiers and minimums */
+  const MIN1=1000, MIN2=4000, MIN3=8000;
+  const T1=0.80, T2=0.75, T3=0.70;
+
+  /* Local store for track order */
+  const STORE_KEY='ymir_orders';
+  const loadOrders = () => { try{ return JSON.parse(localStorage.getItem(STORE_KEY)||'{}'); }catch{return{}} };
+  const saveOrders = m => { try{ localStorage.setItem(STORE_KEY, JSON.stringify(m)); }catch{} };
+
+  function getRate(q){
+    if(!q || q<MIN1) return null;
+    if(q<MIN2) return T1;
+    if(q<MIN3) return T2;
+    return T3;
+  }
+  function estimateFromPHP(p){
+    if(!p||p<=0) return 0;
+    let q = Math.floor(p/T1);
+    for(let i=0;i<4;i++){
+      const r = getRate(q) ?? T1;
+      q = Math.floor(p/r);
+    }
+    return q;
+  }
+
+  function midmanFeeFromTotal(total){
+    // total is PHP amount
+    if(!total || total <= 0) return 0;
+    if(total < 1000) return 50;
+    return Math.round((total * 0.05) * 100) / 100; // 5%
+  }
+
+  function paintPills(q, r){
+    // visual highlighting kept simple (removed previous ring logic)
+    // No complex visuals required here.
+  }
+
+  const diasEl=$('dias'), phpEl=$('phpIn'), serverEl=$('serverIn');
+  const rateOut=$('rateOut'), saveOut=$('saveOut'), warn=$('warn'), buyBtn=$('buyBtn'), midmanOut=$('midmanOut');
+
+  let lastEdited=null;
+  const validServer = () => serverEl.value.trim().length>0;
+
+  function recalc(){
+    let q = toInt(diasEl.value);
+    let p = toNum(phpEl.value);
+
+    if(lastEdited==='p'){ q = estimateFromPHP(p); diasEl.value = q?String(q):''; }
+    else if(lastEdited==='d'){ const r=getRate(q); phpEl.value = (r&&q)? fmt(q*r):''; }
+    else{
+      if(!q && p){ q = estimateFromPHP(p); diasEl.value = q?String(q):''; }
+      if(q && !p){ const r=getRate(q); phpEl.value = r? fmt(q*r):''; }
+    }
+
+    const r=getRate(q);
+
+    const ok = q>=MIN1 && !!r && validServer();
+    warn.style.display = ok ? 'none' : 'block';
+    buyBtn.disabled = !ok;
+
+    if(r && q){
+      rateOut.textContent = `₱${r.toFixed(2)} / dia`;
+      const base = q * T1;
+      const total = toNum(phpEl.value) || (q * r);
+      const midFee = midmanFeeFromTotal(total);
+      midmanOut.textContent = (midFee>=1) ? `₱${fmt(midFee)}` : '—';
+      saveOut.textContent = `${Math.max(0,(1-r/T1)*100).toFixed(2)}% • ₱${fmt(Math.max(0, base - (q*r)))}`;
+    }else{
+      rateOut.textContent='—';
+      saveOut.textContent='—';
+      midmanOut.textContent='—';
+    }
+  }
+
+  ['input','change','keyup'].forEach(ev=>{
+    diasEl.addEventListener(ev, ()=>{ lastEdited='d'; recalc(); });
+    phpEl.addEventListener(ev,  ()=>{ lastEdited='p'; recalc(); });
+    serverEl.addEventListener(ev, recalc);
+  });
+  recalc();
+
+  /* Receipt helpers */
+  function genRID(){
+    const t = Date.now().toString(36).toUpperCase();
+    const r = Math.random().toString(36).slice(2,6).toUpperCase();
+    return `YMIR-${t}-${r}`;
+  }
+
+  function setStatusUI(status){
+    const s=$('t_status');
+    s.textContent = status;
+    s.style.color = status==='DELIVERED' ? '#ff8aa0' : status==='PAID' ? '#22cf74' : '#ffd64d';
+  }
+
+  /* Buy -> copy message, popup, store local order */
+  $('buyBtn').addEventListener('click', async ()=>{
+    let q = toInt(diasEl.value);
+    let p = toNum(phpEl.value);
+    if(!q && p) q = estimateFromPHP(p);
+    const r = getRate(q);
+    if(!r || !validServer()){ recalc(); return; }
+    const total = p || (q*r);
+    const rid = genRID();
+
+    const midFee = midmanFeeFromTotal(total);
+
+    const msg = `BUY ORDER
+Diamonds: ${q} 💎
+Server: ${serverEl.value.trim()}
+Rate: ₱${r.toFixed(2)} / dia
+Total: ₱${fmt(total)}
+Midman Fee: ₱${fmt(midFee)}
+GCash: 09162466318 (MOISES B.)
+Receipt ID: ${rid}`;
+
+    try{ await navigator.clipboard.writeText(msg); }catch{}
+    $('buyOrderId').textContent = `Receipt ID: ${rid}`;
+    document.querySelector('#buyPopup').style.display='grid';
+
+    const map=loadOrders();
+    map[rid] = {status:'PENDING', server: serverEl.value.trim(), qty:q, rate:r, total, midFee, time:new Date().toISOString()};
+    saveOrders(map);
+
+    // Prefill track area
+    $('trackIn').value = rid;
+    showTrack(rid, map[rid]);
+  });
+
+  $('closePop').addEventListener('click', ()=> document.querySelector('#buyPopup').style.display='none');
+
+  /* Track UI */
+  function showTrack(id, rec){
+    if(rec){
+      $('trackOut').style.display='block';
+      $('trackNone').style.display='none';
+      $('t_id').textContent = id;
+      setStatusUI(rec.status);
+      $('t_server').textContent = rec.server || '—';
+      $('t_qty').textContent = rec.qty || '—';
+      $('t_rate').textContent = rec.rate ? `₱${rec.rate.toFixed(2)} / dia` : '—';
+      $('t_total').textContent = rec.total ? `₱${fmt(rec.total)}` : '—';
+      $('t_time').textContent = rec.time ? new Date(rec.time).toLocaleString() : '—';
+    }else{
+      $('trackOut').style.display='none';
+      $('trackNone').style.display='block';
+    }
+  }
+
+  // query ?rid=...
+  (function(){
+    const params = new URLSearchParams(location.search);
+    const rid = params.get('rid');
+    if(rid){
+      $('trackIn').value = rid;
+      const rec = loadOrders()[rid];
+      showTrack(rid, rec);
+    }
+  })();
+
+  $('trackBtn').addEventListener('click', ()=>{
+    const id = $('trackIn').value.trim();
+    const rec = loadOrders()[id];
+    showTrack(id, rec);
+  });
+
+  $('btnPaid').addEventListener('click', ()=>{
+    const id = $('trackIn').value.trim();
+    const map=loadOrders(); if(!map[id]) return;
+    map[id].status='PAID'; saveOrders(map); setStatusUI('PAID');
+  });
+
+  // secret delivered: 6 taps on logo
+  let tapCount=0, tapTimer=null;
+  $('secretLogo').addEventListener('click', ()=>{
+    tapCount++; clearTimeout(tapTimer);
+    tapTimer=setTimeout(()=>tapCount=0,900);
+    if(tapCount>=6){
+      tapCount=0;
+      const id = $('trackIn').value.trim();
+      const map=loadOrders(); if(!map[id]) return;
+      map[id].status='DELIVERED'; saveOrders(map); setStatusUI('DELIVERED');
+    }
+  });
+
+  /* GCash copy + popup */
+  (function(){
+    const row=$('gcashRow'), pop=$('gcashPopup'), ok=$('gcashOk'), copy=$('copyG');
+    row.addEventListener('click', async (e)=>{
+      // avoid double when clicking copy button
+      if(e.target === copy) return;
+      try{ await navigator.clipboard.writeText('09162466318'); }catch{}
+      pop.style.display='grid';
+    });
+    copy.addEventListener('click', async ()=>{
+      try{ await navigator.clipboard.writeText('09162466318'); }catch{}
+      pop.style.display='grid';
+    });
+    ok.addEventListener('click', ()=> pop.style.display='none');
+  })();
+
+  /* GCash QR modal */
+  (function(){
+    const btn=$('showQR'), modal=$('qrPopup'), close=$('qrOk');
+    btn.addEventListener('click', ()=> modal.style.display='grid');
+    close.addEventListener('click', ()=> modal.style.display='none');
+  })();
+
+  /* GoTyme copy + popup */
+  (function(){
+    const row=$('goRow'), pop=$('goPopup'), ok=$('goOk'), copy=$('copyGo');
+    row.addEventListener('click', async (e)=>{
+      if(e.target === copy) return;
+      try{ await navigator.clipboard.writeText('014664932955'); }catch{}
+      pop.style.display='grid';
+    });
+    copy.addEventListener('click', async ()=>{
+      try{ await navigator.clipboard.writeText('014664932955'); }catch{}
+      pop.style.display='grid';
+    });
+    ok.addEventListener('click', ()=> pop.style.display='none');
+  })();
+
+  /* GoTyme QR modal */
+  (function(){
+    const btn=$('showGoQR'), modal=$('goQRPopup'), close=$('goQROk');
+    btn.addEventListener('click', ()=> modal.style.display='grid');
+    close.addEventListener('click', ()=> modal.style.display='none');
+  })();
+
+  /* Save FB / Discord: store to localStorage and copy link */
+  (function(){
+    const fbUrl = document.getElementById('fbLink').href;
+    const dcUrl = document.getElementById('dcLink').href;
+    const saveFbBtn = $('saveFb'), saveDcBtn = $('saveDc');
+
+    function setSavedUI(which, saved){
+      if(which === 'fb'){
+        saveFbBtn.textContent = saved ? 'Saved ✔' : '💾 Save FB';
+      }else{
+        saveDcBtn.textContent = saved ? 'Saved ✔' : '💾 Save DC';
+      }
+    }
+
+    const savedFb = localStorage.getItem('ymir_saved_fb') === '1';
+    const savedDc = localStorage.getItem('ymir_saved_dc') === '1';
+    setSavedUI('fb', savedFb);
+    setSavedUI('dc', savedDc);
+
+    saveFbBtn.addEventListener('click', async ()=>{
+      try{ await navigator.clipboard.writeText(fbUrl); }catch{}
+      localStorage.setItem('ymir_saved_fb','1');
+      setSavedUI('fb', true);
+      alert('Facebook link copied and saved locally.');
+    });
+    saveDcBtn.addEventListener('click', async ()=>{
+      try{ await navigator.clipboard.writeText(dcUrl); }catch{}
+      localStorage.setItem('ymir_saved_dc','1');
+      setSavedUI('dc', true);
+      alert('Discord link copied and saved locally.');
+    });
+  })();
+
+  // error toast
+  window.addEventListener('error', function (e) {
+    try{
+      const t = document.createElement('div');
+      t.textContent = 'Error: ' + (e.message || 'unknown');
+      Object.assign(t.style, {
+        position:'fixed', left:'8px', bottom:'8px', background:'rgba(255,0,80,.12)',
+        color:'#fff', padding:'8px 10px', border:'1px solid rgba(255,0,80,.35)',
+        borderRadius:'8px', zIndex:99999, fontSize:'12px', maxWidth:'90vw'
+      });
+      document.body.appendChild(t);
+      setTimeout(()=>t.remove(), 5000);
+    }catch(_){}
+  });
+
+})();
+</script>
+</body>
+</html>
