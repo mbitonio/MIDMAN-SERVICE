@@ -25,44 +25,46 @@ body::before{
 @keyframes bgFloat{to{transform:translate3d(1.2%,-1.2%,0)}}
 
 .wrap{max-width:880px;margin:auto;padding:18px 14px 120px}
-.header{display:grid;place-items:center;margin-top:6px}
-.logo{width:min(42vw,160px);aspect-ratio:1/1;border-radius:999px;position:relative;display:grid;place-items:center;background:radial-gradient(120px 110px at 50% 50%, #0e0a0d 40%, #000 100%);box-shadow:0 0 0 8px rgba(0,0,0,.55)}
-/* ring removed per request */
-.logo img{width:82%;border-radius:999px;box-shadow:0 0 18px rgba(255,40,100,.28)}
-.brand{display:flex;gap:10px;align-items:center;justify-content:center;margin:10px 0 4px;font-weight:800;font-size:26px;text-shadow:0 0 10px rgba(255,70,120,.25)}
-.badge{width:22px;height:22px;display:inline-block;filter: drop-shadow(0 0 10px rgba(24,119,242,.45))}
+.header{display:grid;place-items:center;margin-top:6px;gap:8px}
+.logo{width:min(42vw,140px);aspect-ratio:1/1;border-radius:16px;position:relative;display:grid;place-items:center;background:radial-gradient(120px 110px at 50% 50%, #0e0a0d 40%, #000 100%);box-shadow:0 0 0 8px rgba(0,0,0,.55)}
+/* ring removed */
+.logo img{width:82%;border-radius:12px;box-shadow:0 0 18px rgba(255,40,100,.28)}
+.brandRow{display:flex;gap:12px;align-items:center;justify-content:center}
+.brand{font-weight:900;font-size:20px}
+.sub{opacity:.9;text-align:center;margin-bottom:6px}
+.links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px}
 
-.sub{opacity:.9;text-align:center;margin-bottom:12px}
-.row{display:grid;gap:12px}
-
-.section{background:linear-gradient(180deg,var(--red1),var(--red2));border:1px solid var(--border);border-radius:18px;padding:14px;box-shadow:0 0 16px rgba(255,40,100,.22)}
+.section{background:linear-gradient(180deg,var(--red1),var(--red2));border:1px solid var(--border);border-radius:14px;padding:12px;box-shadow:0 0 16px rgba(255,40,100,.14);margin-top:12px}
 .h2{font-weight:800;margin:4px 0 10px;font-size:18px}
 .label{font-size:13px;color:#ccb9c1;margin:4px 2px 6px}
-.in{width:100%;border:1px solid rgba(255,120,160,.20);background:#0b090c;color:#fff;padding:14px;border-radius:14px;font-size:18px;outline:none;box-shadow:inset 0 0 14px rgba(255,20,80,.06), 0 0 12px rgba(255,40,100,.12)}
-.in:focus{border-color:#ff6aa1;box-shadow:0 0 0 3px rgba(255,60,110,.16)}
+.in{width:100%;border:1px solid rgba(255,120,160,.12);background:#0b090c;color:#fff;padding:12px;border-radius:12px;font-size:16px;outline:none;box-shadow:inset 0 0 10px rgba(255,20,80,.04)}
+.in:focus{border-color:#ff6aa1;box-shadow:0 0 0 3px rgba(255,60,110,.10)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.box{background:linear-gradient(180deg,#1a1218,#120e13);border:1px solid rgba(255,120,160,.18);border-radius:16px;padding:12px;text-align:center}
-.box h5{margin:0 0 4px;font-size:12px;color:#ccb9c1}
-.big{font-weight:900;font-size:20px}
-.btn{display:inline-flex;align-items:center;gap:10px;border:none;border-radius:14px;padding:14px 16px;font-weight:800;letter-spacing:.2px;cursor:pointer;user-select:none}
-.pri{background:var(--green);color:#092112;box-shadow:0 18px 44px rgba(33,208,114,.24), inset 0 -6px 0 rgba(0,0,0,.12)}
-.copy{background:#27252c;color:#fff;border:1px solid rgba(255,255,255,.12)}
-.links{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.a{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:14px;padding:14px 16px;font-weight:800;text-decoration:none;color:#fff}
+.box{background:linear-gradient(180deg,#151218,#0f0e12);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;text-align:center}
+.box h5{margin:0 0 6px;font-size:13px;color:#ccb9c1}
+.big{font-weight:900;font-size:18px}
+.btn{display:inline-flex;align-items:center;gap:10px;border:none;border-radius:12px;padding:10px 12px;font-weight:800;letter-spacing:.2px;cursor:pointer;user-select:none}
+.pri{background:var(--green);color:#092112}
+.copy{background:#27252c;color:#fff;border:1px solid rgba(255,255,255,.08)}
+.a{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:12px;padding:10px 12px;font-weight:800;text-decoration:none;color:#fff}
 .fb{background:var(--blue)}
 .dc{background:var(--discord)}
 .note{font-size:12px;color:#a8989f;margin-top:6px}
 
-.card{background:linear-gradient(180deg,#17141a,#120f14);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px;box-shadow:0 0 16px rgba(0,0,0,.25);margin-top:12px}
-.step{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start;padding:10px;border-bottom:1px dashed rgba(255,255,255,.08)}
+.paymentRow{display:flex;gap:12px;align-items:center;justify-content:center;margin-top:6px;flex-wrap:wrap}
+.gcashCard{display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,#0b1620,#071218);padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.04)}
+.gIcon{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:#1c6ef4;font-weight:900;color:#fff}
+
+.card{background:linear-gradient(180deg,#17141a,#120f14);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;box-shadow:0 0 16px rgba(0,0,0,.22);margin-top:12px}
+.step{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start;padding:10px;border-bottom:1px dashed rgba(255,255,255,.06)}
 .step:last-child{border-bottom:none}
-.ico{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:#0f0d12;border:1px solid rgba(255,255,255,.10)}
+.ico{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:#0f0d12;border:1px solid rgba(255,255,255,.06)}
 .em{font-size:18px}
 .kv{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .kv strong{font-weight:800}
 .center{text-align:center}
 
-@media (max-width:680px){ .grid2{grid-template-columns:1fr} }
+@media (max-width:680px){ .grid2{grid-template-columns:1fr} .brand{font-size:18px} }
 </style>
 </head>
 <body>
@@ -70,34 +72,47 @@ body::before{
     <!-- header -->
     <div class="header">
       <div class="logo" title="Logo">
-        <!-- ring removed -->
-        <img src="logo.png" alt="Logo" onerror="this.outerHTML='<div style=&quot;font-weight:900;font-size:40px;&quot;>MOI</div>'">
+        <img src="logo.png" alt="Logo" onerror="this.outerHTML='<div style=&quot;font-weight:900;font-size:36px;&quot;>MOI</div>'">
       </div>
-      <div class="brand">
-        MOISES BITONIO
+
+      <div class="brandRow">
+        <div class="brand">MOISES TRAJANO BITONIO</div>
         <!-- verified badge -->
-        <svg class="badge" viewBox="0 0 24 24" aria-hidden="true">
-          <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2aa4ff"/><stop offset="1" stop-color="#1877f2"/></linearGradient></defs>
-          <circle cx="12" cy="12" r="10" fill="url(#g)"/>
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="filter:drop-shadow(0 0 8px rgba(41,164,255,.25))">
+          <defs><linearGradient id="vG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2aa4ff"/><stop offset="1" stop-color="#1877f2"/></linearGradient></defs>
+          <circle cx="12" cy="12" r="10" fill="url(#vG)"/>
           <path d="M9.2 12.6l-1.7-1.7a1 1 0 10-1.4 1.4l2.4 2.4c.4.4 1 .4 1.4 0l6.1-6.1a1 1 0 10-1.4-1.4l-5.4 5.4z" fill="#fff"/>
         </svg>
       </div>
+
       <div class="sub">Midman Service • Safe trades with trust and transparency</div>
+
+      <!-- Links + GCash -->
       <div class="links">
         <a class="a fb" href="https://m.me/mbitonio" target="_blank" rel="noopener">
-          <!-- FB icon -->
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 5.01 3.66 9.17 8.44 9.93v-7.02H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.93z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 5.01 3.66 9.17 8.44 9.93v-7.02H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46 h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.93z"/></svg>
           Facebook
         </a>
         <a class="a dc" href="https://discord.gg/QkdVz5mh" target="_blank" rel="noopener">
-          <!-- Discord icon -->
           <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M20.3 4.4A16 16 0 0015.9 3l-.4.8a13.3 13.3 0 00-7 0L8.1 3A16 16 0 003.7 4.4C1.7 7.5 1 10.5 1.2 13.4a16 16 0 005.9 3l.8-1.3c-.4-.1-.7-.3-1-.4.1-.1.2-.2.3-.3 1.9.9 4 .9 5.9 0l.3.3c-.3.2-.6.3-1 .4l.8 1.3a16 16 0 005.9-3c.3-3-.5-5.9-2.8-9zM9.6 13c-.9 0-1.6-.8-1.6-1.7S8.7 9.6 9.6 9.6s1.6.8 1.6 1.7S10.5 13 9.6 13zm4.8 0c-.9 0-1.6-.8-1.6-1.7s.7-1.7 1.6-1.7 1.6.8 1.6 1.7-.7 1.7-1.6 1.7z"/></svg>
           Discord
         </a>
       </div>
+
+      <div class="paymentRow">
+        <div class="gcashCard" title="Tap to copy GCash">
+          <div class="gIcon">G</div>
+          <div style="display:flex;flex-direction:column">
+            <div style="font-size:13px;color:var(--mut)">GCash</div>
+            <div style="font-weight:900">09162466318</div>
+            <div style="font-size:13px;color:var(--mut)">MOISES B.</div>
+          </div>
+          <button id="copyG" class="btn copy" style="margin-left:10px">Copy</button>
+        </div>
+      </div>
     </div>
 
-    <!-- Order Format (calculator removed) -->
+    <!-- Order Format (calculator removed, item removed) -->
     <div class="section">
       <div class="h2">Copy Order Format</div>
 
@@ -108,10 +123,7 @@ body::before{
       <input id="seller" class="in" placeholder="Seller full name / FB name">
 
       <div class="label" style="margin-top:8px">Game</div>
-      <input id="game" class="in" placeholder="e.g., MIR4 • Mobile Legends • MLBB • Free Fire">
-
-      <div class="label" style="margin-top:8px">Account / Item Details</div>
-      <input id="item" class="in" placeholder="e.g., Level 60 account, IGN, CP, skins, etc.">
+      <input id="game" class="in" placeholder="e.g., MIR4 • Mobile Legends • Free Fire">
 
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
         <button id="copyBtn" class="btn copy">📋 Copy Format</button>
@@ -178,7 +190,7 @@ body::before{
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" style="margin-top:12px">
         <div class="h2">⚠️ REMINDERS</div>
         <ul style="margin:6px 0 0 18px;line-height:1.5">
           <li>Gmail can still be recovered within 7–8 days.</li>
@@ -194,26 +206,25 @@ body::before{
   </div>
 
 <script>
+// Elements
 const buyer = document.getElementById('buyer');
 const seller = document.getElementById('seller');
 const game = document.getElementById('game');
-const item = document.getElementById('item');
 const copyBtn = document.getElementById('copyBtn');
 const msgBtn = document.getElementById('msgBtn');
+const copyG = document.getElementById('copyG');
 
-function peso(n){ return '₱' + (Number(n)||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); }
-
+// Build message (now only includes Game)
 function buildMessage(){
   const lines = [
     'MIDMAN REQUEST',
-    'Buyer: ' + (buyer.value.trim()||'[Buyer name]'),
-    'Seller: ' + (seller.value.trim()||'[Seller name]'),
-    'Game: ' + (game.value.trim()||'[Game name]'),
-    'Item / Account: ' + (item.value.trim()||'[Details (level, IGN, CP, skins, etc.)]'),
+    'Buyer: ' + (buyer.value.trim() || '[Buyer name]'),
+    'Seller: ' + (seller.value.trim() || '[Seller name]'),
+    'Game: ' + (game.value.trim() || '[Game name]'),
     '',
-    'Amount: ' + '[amount here]',
-    'Midman Fee: ' + '[fee - will be confirmed by midman]',
-    'Total to Send: ' + '[total amount]',
+    'Amount: [amount here]',
+    'Midman Fee: [fee - will be confirmed by midman]',
+    'Total to Send: [total amount]',
     '',
     'Payment details: Will be provided by the midman after confirming the request.',
     '',
@@ -230,9 +241,20 @@ copyBtn.addEventListener('click', ()=>{
   }).catch(()=>{ alert('Copy failed.'); });
 });
 
-msgBtn.addEventListener('click', (e)=>{
+msgBtn.addEventListener('click', ()=>{
   const text = encodeURIComponent(buildMessage());
   msgBtn.href = 'https://m.me/mbitonio?text=' + text;
+});
+
+// copy gcash
+copyG.addEventListener('click', async ()=>{
+  try{
+    await navigator.clipboard.writeText('09162466318');
+    copyG.textContent = '✔ Copied';
+    setTimeout(()=>copyG.textContent='Copy',1200);
+  }catch{
+    alert('Copy failed.');
+  }
 });
 </script>
 </body>
