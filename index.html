@@ -7,71 +7,83 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#09060a;
+    --bg:#0b0a0c;
     --txt:#fff7fb;
     --mut:#ccb9c1;
-    --accent1:#ff2b63;
-    --accent2:#ff6ea0;
-    --accent3:#ff2b63;
-    --gcash:#1c6ef4;
+    --pink1: #ff2b63;
+    --pink2: #ff6ea0;
     --green:#21d072;
+    --gcash:#1c6ef4;
     --card:#0f0d12;
     --glass-border: rgba(255,255,255,.06);
   }
   *{box-sizing:border-box}
-  html,body{height:100%;margin:0;background:var(--bg);color:var(--txt);font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.35}
+  html,body{height:100%;margin:0;background:var(--bg);color:var(--txt);font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
   .wrap{max-width:920px;margin:18px auto;padding:20px}
 
   /* Header */
-  .header{display:flex;gap:18px;align-items:center;}
-  /* circular logo + neon ring (conic) */
+  .header{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+  .leftHeader{display:flex;gap:18px;align-items:center}
+  /* circular logo + neon/pink glow ring */
   .logo {
-    width:112px;height:112px;border-radius:999px;position:relative;display:grid;place-items:center;
-    background:radial-gradient(circle at 50% 44%, rgba(255,255,255,.03) 0%, rgba(0,0,0,.6) 60%);
+    width:128px;height:128px;border-radius:999px;position:relative;display:grid;place-items:center;
+    background:radial-gradient(circle at 50% 44%, rgba(255,255,255,.02) 0%, rgba(0,0,0,.6) 60%);
     overflow:visible;
   }
-  /* conic neon ring: use pseudo element */
+  /* outer glow ring (solid pink glow like screenshot) */
   .logo::before{
     content:"";
-    position:absolute;inset:-10px;
+    position:absolute;inset:-22px;
     border-radius:999px;
     background:
-      conic-gradient(from 0deg, var(--accent1), var(--accent2), var(--accent3), var(--accent1));
-    filter:blur(6px) saturate(140%);
-    opacity:.95;
+      radial-gradient(circle at 50% 50%,
+        rgba(255,70,120,0.35) 0%,
+        rgba(255,70,120,0.20) 30%,
+        rgba(255,60,120,0.09) 55%,
+        rgba(255,50,110,0.02) 70%,
+        transparent 100%);
+    filter: blur(18px) saturate(140%);
     z-index:0;
+    mix-blend-mode:screen;
   }
-  /* mask to make it a thin ring */
+  /* thin neon ring edge */
   .logo::after{
     content:"";
-    position:absolute;left:6px;top:6px;right:6px;bottom:6px;border-radius:999px;
-    background:transparent;
-    -webkit-mask: radial-gradient(circle at center, transparent 60%, black 61%);
-            mask: radial-gradient(circle at center, transparent 60%, black 61%);
-    z-index:2;
+    position:absolute;inset:-8px;
+    border-radius:999px;
+    background: conic-gradient(from 0deg, var(--pink1), var(--pink2), var(--pink1));
+    -webkit-mask: radial-gradient(circle, transparent 58%, black 59%);
+            mask: radial-gradient(circle, transparent 58%, black 59%);
+    filter: blur(6px) saturate(140%);
+    z-index:1;
+    opacity:0.95;
   }
-  /* inner solid circle / avatar holder */
+
   .avatar {
-    width:74px;height:74px;border-radius:999px;overflow:hidden;display:grid;place-items:center;
+    width:78px;height:78px;border-radius:999px;overflow:hidden;display:grid;place-items:center;
     background:linear-gradient(180deg,#0b0a0d,#060507);z-index:3;border:1px solid var(--glass-border);
-    box-shadow:0 6px 22px rgba(255,40,100,.06), inset 0 -6px 18px rgba(0,0,0,.6);
+    box-shadow:0 8px 30px rgba(255,40,100,.06), inset 0 -6px 18px rgba(0,0,0,.6);
+    transform:translateZ(0);
   }
   .avatar img{width:100%;height:100%;object-fit:cover;display:block}
 
-  .titleBlock{flex:1;display:flex;flex-direction:column;gap:6px}
+  .titleBlock{display:flex;flex-direction:column;gap:6px;min-width:220px}
   .nameRow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-  .name{font-size:18px;font-weight:800}
-  .verified{width:22px;height:22px;display:inline-block;filter:drop-shadow(0 4px 14px rgba(41,164,255,.12))}
+  .name{font-size:20px;font-weight:800;letter-spacing:0.2px}
+  .verified{width:22px;height:22px;display:inline-block;filter:drop-shadow(0 6px 16px rgba(41,164,255,.12))}
   .sub{color:var(--mut);font-weight:600;font-size:13px}
 
-  /* GCash / links */
-  .rightCol{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
-  .gcashCard{display:flex;align-items:center;gap:12px;background:linear-gradient(180deg,#071226,#08121a);padding:8px 12px;border-radius:12px;border:1px solid var(--glass-border)}
+  /* right area (gcash & links) */
+  .rightCol{display:flex;gap:12px;align-items:center}
+  .gcashCard{display:flex;align-items:center;gap:12px;background:linear-gradient(180deg,#071226,#08121a);padding:10px;border-radius:12px;border:1px solid var(--glass-border)}
   .gicon{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:var(--gcash);font-weight:900;color:#fff}
   .ginfo{display:flex;flex-direction:column;line-height:1}
   .ginfo .label{font-size:12px;color:var(--mut);font-weight:700}
   .ginfo .num{font-size:15px;font-weight:900}
   .gcopy{background:#27252c;border:1px solid rgba(255,255,255,.04);color:var(--txt);padding:8px 10px;border-radius:10px;font-weight:800;cursor:pointer}
+
+  .linkBtns{display:flex;gap:8px}
+  .linkBtn{background:transparent;border:1px solid rgba(255,255,255,.06);color:var(--txt);padding:8px 12px;border-radius:10px;font-weight:800;text-decoration:none}
 
   /* main cards */
   .card{background:linear-gradient(180deg,#0e0c0f,#0a090b);border:1px solid var(--glass-border);border-radius:12px;padding:14px;margin-top:16px;box-shadow:0 8px 30px rgba(0,0,0,.5)}
@@ -79,7 +91,7 @@
   .label{font-size:13px;color:var(--mut);margin-bottom:8px}
   .input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.04);background:transparent;color:var(--txt);font-size:15px;outline:none}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .smallBox{background:linear-gradient(180deg,#081015,#061012);padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.03);text-align:center}
+  .smallBox{background:linear-gradient(180deg,#081015,#061012);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.03);text-align:center}
   .bigVal{font-weight:900;font-size:18px}
 
   .actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
@@ -97,7 +109,7 @@
 
   /* responsive */
   @media (max-width:760px){
-    .header{flex-direction:column;align-items:center}
+    .header{flex-direction:column;align-items:center;gap:12px}
     .rightCol{align-items:center}
     .grid2{grid-template-columns:1fr}
   }
@@ -106,24 +118,25 @@
 <body>
   <div class="wrap">
     <header class="header">
-      <div class="logo" aria-hidden="true">
-        <!-- neon ring is CSS conic + mask; avatar centered inside -->
-        <div class="avatar">
-          <!-- replace avatar.png with your avatar image file; if missing, initials shown -->
-          <img src="owner-avatar.png" alt="MOISES" onerror="this.style.display='none';this.parentNode.innerHTML='<div style=&quot;font-weight:900;font-size:20px;color:var(--txt)&quot;>MB</div>'">
+      <div class="leftHeader">
+        <div class="logo" aria-hidden="true">
+          <!-- avatar/logo centered; replace 'logo.png' with your logo filename in same folder -->
+          <div class="avatar">
+            <img src="logo.png" alt="MoiPH Logo" onerror="this.style.display='none';this.parentNode.innerHTML='<div style=&quot;font-weight:900;font-size:22px;color:var(--txt)&quot;>MB</div>'">
+          </div>
         </div>
-      </div>
 
-      <div class="titleBlock">
-        <div class="nameRow">
-          <div class="name">MOISES TRAJANO BITONIO</div>
-          <!-- verified badge -->
-          <svg class="verified" viewBox="0 0 24 24" aria-hidden="true">
-            <defs><linearGradient id="vg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2aa4ff"/><stop offset="1" stop-color="#1877f2"/></linearGradient></defs>
-            <circle cx="12" cy="12" r="10" fill="url(#vg)"/><path d="M9.2 12.6l-1.7-1.7a1 1 0 10-1.4 1.4l2.4 2.4c.4.4 1 .4 1.4 0l6.1-6.1a1 1 0 10-1.4-1.4l-5.4 5.4z" fill="#fff"/>
-          </svg>
+        <div class="titleBlock">
+          <div class="nameRow">
+            <div class="name">MOISES TRAJANO BITONIO</div>
+            <!-- verified badge -->
+            <svg class="verified" viewBox="0 0 24 24" aria-hidden="true">
+              <defs><linearGradient id="vg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2aa4ff"/><stop offset="1" stop-color="#1877f2"/></linearGradient></defs>
+              <circle cx="12" cy="12" r="10" fill="url(#vg)"/><path d="M9.2 12.6l-1.7-1.7a1 1 0 10-1.4 1.4l2.4 2.4c.4.4 1 .4 1.4 0l6.1-6.1a1 1 0 10-1.4-1.4l-5.4 5.4z" fill="#fff"/>
+            </svg>
+          </div>
+          <div class="sub">Midman Service • Safe trades with trust & transparency</div>
         </div>
-        <div class="sub">Midman Service • Safe trades with trust & transparency</div>
       </div>
 
       <div class="rightCol">
@@ -137,9 +150,9 @@
           <button id="copyG" class="gcopy" aria-label="Copy GCash">Copy</button>
         </div>
 
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <a class="btn ghost" href="https://m.me/mbitonio" target="_blank" rel="noopener">Message</a>
-          <a class="btn ghost" href="https://discord.gg/QkdVz5mh" target="_blank" rel="noopener">Discord</a>
+        <div class="linkBtns">
+          <a class="linkBtn" href="https://m.me/mbitonio" target="_blank" rel="noopener">Message</a>
+          <a class="linkBtn" href="https://discord.gg/QkdVz5mh" target="_blank" rel="noopener">Discord</a>
         </div>
       </div>
     </header>
@@ -248,7 +261,6 @@
   }
 
   amtEl.addEventListener('input', ()=>{
-    // allow only numbers and dot
     amtEl.value = amtEl.value.replace(/[^\d.]/g,'');
     refresh();
   });
@@ -270,7 +282,7 @@
       'Payment details: Will be provided by the midman after confirming the request.',
       '',
       'I agree to follow the Midman Process steps.'
-    ].join('\\n');
+    ].join('\n');
   }
 
   copyBtn.addEventListener('click', async ()=>{
