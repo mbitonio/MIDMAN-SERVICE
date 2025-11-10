@@ -21,32 +21,21 @@
   html,body{height:100%;margin:0;background:var(--bg);color:var(--txt);font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
   .wrap{max-width:920px;margin:18px auto;padding:20px}
 
-  /* Header */
   .header{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:space-between}
   .leftHeader{display:flex;gap:18px;align-items:center}
-  /* circular logo + neon/pink glow ring */
   .logo {
     width:128px;height:128px;border-radius:999px;position:relative;display:grid;place-items:center;
     background:radial-gradient(circle at 50% 44%, rgba(255,255,255,.02) 0%, rgba(0,0,0,.6) 60%);
-    overflow:visible;
   }
-  /* outer glow ring (solid pink glow like screenshot) */
   .logo::before{
     content:"";
     position:absolute;inset:-22px;
     border-radius:999px;
-    background:
-      radial-gradient(circle at 50% 50%,
-        rgba(255,70,120,0.35) 0%,
-        rgba(255,70,120,0.20) 30%,
-        rgba(255,60,120,0.09) 55%,
-        rgba(255,50,110,0.02) 70%,
-        transparent 100%);
+    background: radial-gradient(circle at 50% 50%, rgba(255,70,120,0.35) 0%, rgba(255,70,120,0.20) 30%, rgba(255,60,120,0.09) 55%, rgba(255,50,110,0.02) 70%, transparent 100%);
     filter: blur(18px) saturate(140%);
     z-index:0;
     mix-blend-mode:screen;
   }
-  /* thin neon ring edge */
   .logo::after{
     content:"";
     position:absolute;inset:-8px;
@@ -58,22 +47,17 @@
     z-index:1;
     opacity:0.95;
   }
-
   .avatar {
     width:78px;height:78px;border-radius:999px;overflow:hidden;display:grid;place-items:center;
     background:linear-gradient(180deg,#0b0a0d,#060507);z-index:3;border:1px solid var(--glass-border);
     box-shadow:0 8px 30px rgba(255,40,100,.06), inset 0 -6px 18px rgba(0,0,0,.6);
-    transform:translateZ(0);
   }
   .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-
   .titleBlock{display:flex;flex-direction:column;gap:6px;min-width:220px}
   .nameRow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
   .name{font-size:20px;font-weight:800;letter-spacing:0.2px}
   .verified{width:22px;height:22px;display:inline-block;filter:drop-shadow(0 6px 16px rgba(41,164,255,.12))}
   .sub{color:var(--mut);font-weight:600;font-size:13px}
-
-  /* right area (gcash & links) */
   .rightCol{display:flex;gap:12px;align-items:center}
   .gcashCard{display:flex;align-items:center;gap:12px;background:linear-gradient(180deg,#071226,#08121a);padding:10px;border-radius:12px;border:1px solid var(--glass-border)}
   .gicon{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:var(--gcash);font-weight:900;color:#fff}
@@ -81,11 +65,8 @@
   .ginfo .label{font-size:12px;color:var(--mut);font-weight:700}
   .ginfo .num{font-size:15px;font-weight:900}
   .gcopy{background:#27252c;border:1px solid rgba(255,255,255,.04);color:var(--txt);padding:8px 10px;border-radius:10px;font-weight:800;cursor:pointer}
-
   .linkBtns{display:flex;gap:8px}
   .linkBtn{background:transparent;border:1px solid rgba(255,255,255,.06);color:var(--txt);padding:8px 12px;border-radius:10px;font-weight:800;text-decoration:none}
-
-  /* main cards */
   .card{background:linear-gradient(180deg,#0e0c0f,#0a090b);border:1px solid var(--glass-border);border-radius:12px;padding:14px;margin-top:16px;box-shadow:0 8px 30px rgba(0,0,0,.5)}
   .h2{font-weight:800;margin:0 0 10px;font-size:16px}
   .label{font-size:13px;color:var(--mut);margin-bottom:8px}
@@ -93,21 +74,10 @@
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .smallBox{background:linear-gradient(180deg,#081015,#061012);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.03);text-align:center}
   .bigVal{font-weight:900;font-size:18px}
-
   .actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
   .btn{padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:800}
   .btn.primary{background:var(--green);color:#072413}
-  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.06);color:var(--txt)}
-
-  /* process list */
-  .steps{display:grid;gap:8px;margin-top:10px}
-  .step{display:flex;gap:10px;align-items:flex-start}
-  .ico{width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:#0b0b0d;border:1px solid rgba(255,255,255,.03)}
-  .step p{margin:0;color:var(--mut);font-size:14px}
-
   footer{margin-top:18px;color:var(--mut);font-size:13px;text-align:center}
-
-  /* responsive */
   @media (max-width:760px){
     .header{flex-direction:column;align-items:center;gap:12px}
     .rightCol{align-items:center}
@@ -120,16 +90,13 @@
     <header class="header">
       <div class="leftHeader">
         <div class="logo" aria-hidden="true">
-          <!-- avatar/logo centered; replace 'logo.png' with your logo filename in same folder -->
           <div class="avatar">
             <img src="logo.png" alt="MoiPH Logo" onerror="this.style.display='none';this.parentNode.innerHTML='<div style=&quot;font-weight:900;font-size:22px;color:var(--txt)&quot;>MB</div>'">
           </div>
         </div>
-
         <div class="titleBlock">
           <div class="nameRow">
             <div class="name">MOISES TRAJANO BITONIO</div>
-            <!-- verified badge -->
             <svg class="verified" viewBox="0 0 24 24" aria-hidden="true">
               <defs><linearGradient id="vg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2aa4ff"/><stop offset="1" stop-color="#1877f2"/></linearGradient></defs>
               <circle cx="12" cy="12" r="10" fill="url(#vg)"/><path d="M9.2 12.6l-1.7-1.7a1 1 0 10-1.4 1.4l2.4 2.4c.4.4 1 .4 1.4 0l6.1-6.1a1 1 0 10-1.4-1.4l-5.4 5.4z" fill="#fff"/>
@@ -149,7 +116,6 @@
           </div>
           <button id="copyG" class="gcopy" aria-label="Copy GCash">Copy</button>
         </div>
-
         <div class="linkBtns">
           <a class="linkBtn" href="https://m.me/mbitonio" target="_blank" rel="noopener">Message</a>
           <a class="linkBtn" href="https://discord.gg/QkdVz5mh" target="_blank" rel="noopener">Discord</a>
@@ -157,163 +123,59 @@
       </div>
     </header>
 
-    <!-- Order card -->
     <main class="card" aria-live="polite">
       <div class="h2">Create Midman Request</div>
-
       <div style="display:grid;gap:10px">
-        <div>
-          <label class="label">Buyer Name</label>
-          <input id="buyer" class="input" placeholder="Your full name">
-        </div>
-
-        <div>
-          <label class="label">Seller Name</label>
-          <input id="seller" class="input" placeholder="Seller full name / FB name">
-        </div>
-
+        <div><label class="label">Buyer Name</label><input id="buyer" class="input" placeholder="Your full name"></div>
+        <div><label class="label">Seller Name</label><input id="seller" class="input" placeholder="Seller full name / FB name"></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <div>
-            <label class="label">Game</label>
-            <input id="game" class="input" placeholder="e.g., MIR4 • MLBB • Free Fire">
-          </div>
-
-          <div>
-            <label class="label">Amount (₱)</label>
-            <input id="amount" class="input" inputmode="decimal" placeholder="e.g., 1500.00">
-          </div>
+          <div><label class="label">Game</label><input id="game" class="input" placeholder="e.g., MIR4 • MLBB • Free Fire"></div>
+          <div><label class="label">Amount (₱)</label><input id="amount" class="input" inputmode="decimal" placeholder="e.g., 1500.00"></div>
         </div>
-
         <div class="grid2" style="margin-top:6px">
-          <div class="smallBox">
-            <div style="font-size:12px;color:var(--mut)">Midman Fee</div>
-            <div id="feeVal" class="bigVal">—</div>
-          </div>
-          <div class="smallBox">
-            <div style="font-size:12px;color:var(--mut)">Total to Send</div>
-            <div id="totalVal" class="bigVal">—</div>
-          </div>
+          <div class="smallBox"><div style="font-size:12px;color:var(--mut)">Midman Fee</div><div id="feeVal" class="bigVal">—</div></div>
+          <div class="smallBox"><div style="font-size:12px;color:var(--mut)">Total to Send</div><div id="totalVal" class="bigVal">—</div></div>
         </div>
-
         <div class="actions">
-          <button id="copyBtn" class="btn ghost">📋 Copy Format</button>
-          <a id="msgBtn" class="btn primary" href="#" target="_blank" rel="noopener">💬 Send to Messenger</a>
-        </div>
-
-        <div class="note" style="margin-top:8px">
-          <strong>Payment details:</strong> Will be provided by the midman after you confirm the request.
+          <button id="copyBtn" class="btn primary">📋 Copy Format</button>
         </div>
       </div>
     </main>
 
-    <!-- Process / steps -->
-    <section class="card">
-      <div class="h2">🛡️ MIDMAN PROCESS (Step-by-Step)</div>
-      <div class="steps">
-        <div class="step"><div class="ico">💵</div><p><strong>Step 1:</strong> Buyer sends payment to midman (only after midman confirms request).</p></div>
-        <div class="step"><div class="ico">📧</div><p><strong>Step 2:</strong> Seller sends the account Gmail & Password to the buyer (via DM).</p></div>
-        <div class="step"><div class="ico">🎮</div><p><strong>Step 3:</strong> Buyer logs in and checks the account in-game.</p></div>
-        <div class="step"><div class="ico">📝</div><p><strong>Step 4:</strong> Buyer gives recovery email & phone to seller.</p></div>
-        <div class="step"><div class="ico">🔐</div><p><strong>Step 5:</strong> Seller updates recovery (add buyer, turn on 2FA).</p></div>
-        <div class="step"><div class="ico">📹</div><p><strong>Step 6:</strong> Seller sends video proof (logout, remove gmail from devices).</p></div>
-        <div class="step"><div class="ico">✅</div><p><strong>Step 7:</strong> Once buyer confirms → midman releases payment.</p></div>
-      </div>
-
-      <div style="margin-top:12px;border-top:1px dashed rgba(255,255,255,.03);padding-top:10px;color:var(--mut)">
-        <strong>⚠️ Reminders:</strong>
-        <ul style="margin:8px 0 0 18px;line-height:1.4">
-          <li>Gmail can still be recovered within 7–8 days.</li>
-          <li>If the seller tries to recover the Gmail, they’ll be posted in groups.</li>
-          <li>MM fee is non-refundable if the deal is canceled.</li>
-        </ul>
-      </div>
-    </section>
-
-    <footer>
-      © MoiPH Midman — MOISES TRAJANO BITONIO
-    </footer>
+    <footer>© MoiPH Midman — MOISES TRAJANO BITONIO</footer>
   </div>
 
 <script>
-  // helpers
   const $ = id => document.getElementById(id);
   const amtEl = $('amount'), feeEl = $('feeVal'), totEl = $('totalVal');
-  const copyBtn = $('copyBtn'), msgBtn = $('msgBtn');
-  const buyer = $('buyer'), seller = $('seller'), game = $('game');
+  const copyBtn = $('copyBtn'), buyer = $('buyer'), seller = $('seller'), game = $('game');
   const copyG = $('copyG'), gcashNum = $('gcashNum');
 
-  function parseNum(v){ v = (v||'').toString().replace(/,/g,''); const n = parseFloat(v); return isFinite(n)? n: 0; }
-  function peso(n){ return '₱' + Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); }
+  function parseNum(v){ v=(v||'').toString().replace(/,/g,'');const n=parseFloat(v);return isFinite(n)?n:0; }
+  function peso(n){ return '₱'+Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); }
 
-  function computeFee(amount){
-    if(!amount || amount <= 0) return {fee:0, total:0};
-    if(amount < 1000) return {fee:50, total: amount + 50};
-    const fee = Math.round(amount * 0.05 * 100)/100;
-    return {fee, total: Math.round((amount + fee) * 100)/100};
-  }
+  function computeFee(a){if(!a||a<=0)return{fee:0,total:0};if(a<1000)return{fee:50,total:a+50};const f=Math.round(a*0.05*100)/100;return{fee:f,total:Math.round((a+f)*100)/100};}
 
-  function refresh(){
-    const a = parseNum(amtEl.value);
-    if(!a){ feeEl.textContent = '—'; totEl.textContent = '—'; return; }
-    const {fee, total} = computeFee(a);
-    feeEl.textContent = peso(fee);
-    totEl.textContent = peso(total);
-  }
+  function refresh(){const a=parseNum(amtEl.value);if(!a){feeEl.textContent='—';totEl.textContent='—';return;}const{fee,total}=computeFee(a);feeEl.textContent=peso(fee);totEl.textContent=peso(total);}
+  amtEl.addEventListener('input',()=>{amtEl.value=amtEl.value.replace(/[^\d.]/g,'');refresh();});
 
-  amtEl.addEventListener('input', ()=>{
-    amtEl.value = amtEl.value.replace(/[^\d.]/g,'');
-    refresh();
-  });
+  function buildMsg(){const a=parseNum(amtEl.value);const{fee,total}=computeFee(a);return[
+    'MIDMAN REQUEST',
+    'Buyer: '+(buyer.value.trim()||'[Buyer name]'),
+    'Seller: '+(seller.value.trim()||'[Seller name]'),
+    'Game: '+(game.value.trim()||'[Game name]'),
+    '',
+    'Amount: '+(a?peso(a):'[amount]'),
+    'Midman Fee: '+(a?peso(fee):'[fee]'),
+    'Total to Send: '+(a?peso(total):'[total]'),
+    '',
+    'GCash: '+gcashNum.textContent.trim()+' — MOISES B.',
+    '',
+    'I agree to follow the Midman Process steps.'
+  ].join('\n');}
 
-  // Build message to copy / send
-  function buildMsg(){
-    const a = parseNum(amtEl.value);
-    const {fee, total} = computeFee(a);
-    return [
-      'MIDMAN REQUEST',
-      'Buyer: ' + (buyer.value.trim() || '[Buyer name]'),
-      'Seller: ' + (seller.value.trim() || '[Seller name]'),
-      'Game: ' + (game.value.trim() || '[Game name]'),
-      '',
-      'Amount: ' + (a? peso(a) : '[amount here]'),
-      'Midman Fee: ' + (a? peso(fee) : '[fee]'),
-      'Total to Send: ' + (a? peso(total) : '[total]'),
-      '',
-      'Payment details: Will be provided by the midman after confirming the request.',
-      '',
-      'I agree to follow the Midman Process steps.'
-    ].join('\n');
-  }
-
-  copyBtn.addEventListener('click', async ()=>{
-    const msg = buildMsg();
-    try{
-      await navigator.clipboard.writeText(msg);
-      copyBtn.textContent = '✔ Copied';
-      setTimeout(()=> copyBtn.textContent = '📋 Copy Format', 1400);
-    }catch(e){
-      alert('Copy failed. You can still select and copy the format manually.');
-    }
-  });
-
-  msgBtn.addEventListener('click', ()=>{
-    const text = encodeURIComponent(buildMsg());
-    msgBtn.href = 'https://m.me/mbitonio?text=' + text;
-  });
-
-  // copy GCash number
-  copyG.addEventListener('click', async ()=>{
-    const n = gcashNum.textContent.trim();
-    try{
-      await navigator.clipboard.writeText(n);
-      copyG.textContent = '✔';
-      setTimeout(()=> copyG.textContent = 'Copy', 1200);
-    }catch{
-      alert('Copy failed');
-    }
-  });
-
-  // init
+  copyBtn.addEventListener('click',async()=>{const msg=buildMsg();try{await navigator.clipboard.writeText(msg);copyBtn.textContent='✔ Copied';setTimeout(()=>copyBtn.textContent='📋 Copy Format',1400);}catch(e){alert('Copy failed.');}});
+  copyG.addEventListener('click',async()=>{const n=gcashNum.textContent.trim();try{await navigator.clipboard.writeText(n);copyG.textContent='✔';setTimeout(()=>copyG.textContent='Copy',1200);}catch{alert('Copy failed');}});
   refresh();
 </script>
 </body>
