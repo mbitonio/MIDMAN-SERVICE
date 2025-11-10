@@ -7,58 +7,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0b0a0c;
-    --txt:#fff7fb;
-    --mut:#ccb9c1;
-    --pink1: #ff2b63;
-    --pink2: #ff6ea0;
-    --green:#21d072;
-    --gcash:#1c6ef4;
-    --card:#0f0d12;
-    --glass-border: rgba(255,255,255,.06);
+    --bg:#0b0a0c; --txt:#fff7fb; --mut:#ccb9c1;
+    --pink1:#ff2b63; --pink2:#ff6ea0;
+    --green:#21d072; --gcash:#1c6ef4;
+    --card:#0f0d12; --glass-border: rgba(255,255,255,.06);
   }
   *{box-sizing:border-box}
   html,body{height:100%;margin:0;background:var(--bg);color:var(--txt);font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:920px;margin:18px auto;padding:20px}
+  .wrap{max-width:980px;margin:18px auto;padding:20px}
 
   /* Header */
   .header{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:space-between}
   .leftHeader{display:flex;gap:18px;align-items:center}
   .logo {
-    width:128px;height:128px;border-radius:999px;position:relative;display:grid;place-items:center;
-    background:radial-gradient(circle at 50% 44%, rgba(255,255,255,.02) 0%, rgba(0,0,0,.6) 60%);
+    width:128px;height:128px;border-radius:999px;position:relative;display:grid;place-items:center;background:radial-gradient(circle at 50% 44%, rgba(255,255,255,.02) 0%, rgba(0,0,0,.6) 60%);overflow:visible;
   }
   .logo::before{
-    content:"";
-    position:absolute;inset:-22px;
-    border-radius:999px;
+    content:"";position:absolute;inset:-22px;border-radius:999px;
     background: radial-gradient(circle at 50% 50%, rgba(255,70,120,0.35) 0%, rgba(255,70,120,0.20) 30%, rgba(255,60,120,0.09) 55%, rgba(255,50,110,0.02) 70%, transparent 100%);
-    filter: blur(18px) saturate(140%);
-    z-index:0;
-    mix-blend-mode:screen;
+    filter: blur(18px) saturate(140%);z-index:0;mix-blend-mode:screen;
   }
   .logo::after{
-    content:"";
-    position:absolute;inset:-8px;
-    border-radius:999px;
-    background: conic-gradient(from 0deg, var(--pink1), var(--pink2), var(--pink1));
-    -webkit-mask: radial-gradient(circle, transparent 58%, black 59%);
-            mask: radial-gradient(circle, transparent 58%, black 59%);
-    filter: blur(6px) saturate(140%);
-    z-index:1;
-    opacity:0.95;
+    content:"";position:absolute;inset:-8px;border-radius:999px;background: conic-gradient(from 0deg, var(--pink1), var(--pink2), var(--pink1));
+    -webkit-mask: radial-gradient(circle, transparent 58%, black 59%); mask: radial-gradient(circle, transparent 58%, black 59%);
+    filter: blur(6px) saturate(140%);z-index:1;opacity:0.95;
   }
-  .avatar {
-    width:78px;height:78px;border-radius:999px;overflow:hidden;display:grid;place-items:center;
-    background:linear-gradient(180deg,#0b0a0d,#060507);z-index:3;border:1px solid var(--glass-border);
-    box-shadow:0 8px 30px rgba(255,40,100,.06), inset 0 -6px 18px rgba(0,0,0,.6);
-  }
+  .avatar { width:78px;height:78px;border-radius:999px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(180deg,#0b0a0d,#060507);z-index:3;border:1px solid var(--glass-border); box-shadow:0 8px 30px rgba(255,40,100,.06), inset 0 -6px 18px rgba(0,0,0,.6); }
   .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+
   .titleBlock{display:flex;flex-direction:column;gap:6px;min-width:220px}
   .nameRow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
   .name{font-size:20px;font-weight:800;letter-spacing:0.2px}
   .verified{width:22px;height:22px;display:inline-block;filter:drop-shadow(0 6px 16px rgba(41,164,255,.12))}
   .sub{color:var(--mut);font-weight:600;font-size:13px}
+
   .rightCol{display:flex;gap:12px;align-items:center}
   .gcashCard{display:flex;align-items:center;gap:12px;background:linear-gradient(180deg,#071226,#08121a);padding:10px;border-radius:12px;border:1px solid var(--glass-border)}
   .gicon{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:var(--gcash);font-weight:900;color:#fff}
@@ -69,7 +51,7 @@
   .linkBtns{display:flex;gap:8px}
   .linkBtn{background:transparent;border:1px solid rgba(255,255,255,.06);color:var(--txt);padding:8px 12px;border-radius:10px;font-weight:800;text-decoration:none}
 
-  /* Cards */
+  /* cards */
   .card{background:linear-gradient(180deg,#0e0c0f,#0a090b);border:1px solid var(--glass-border);border-radius:12px;padding:14px;margin-top:16px;box-shadow:0 8px 30px rgba(0,0,0,.5)}
   .h2{font-weight:800;margin:0 0 10px;font-size:16px}
   .label{font-size:13px;color:var(--mut);margin-bottom:8px}
@@ -80,26 +62,28 @@
   .actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
   .btn{padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:800}
   .btn.primary{background:var(--green);color:#072413}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.06);color:var(--txt)}
 
-  /* Steps / list */
   .steps{display:grid;gap:8px;margin-top:10px}
   .step{display:flex;gap:10px;align-items:flex-start}
   .ico{width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:#0b0b0d;border:1px solid rgba(255,255,255,.03)}
   .step p{margin:0;color:var(--mut);font-size:14px}
 
-  .notice{background:linear-gradient(180deg,#17141a,#120f14);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;margin-top:12px;color:var(--mut)}
+  /* track order small UI */
+  .trackBox{margin-top:14px;background:linear-gradient(180deg,#151218,#100f13);border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:12px}
+  .chip{display:inline-flex;gap:8px;align-items:center;background:#191617;border:1px solid rgba(255,255,255,.06);padding:8px 12px;border-radius:10px}
+  .hint{font-size:12px;color:var(--mut);margin-top:6px}
+
+  /* popups */
+  #buyPopup,#gcashPopup,#qrPopup,#goPopup,#goQRPopup{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;place-items:center;z-index:60}
+  .cardPop{width:min(92vw,540px);background:#0f0d10;border:1px solid var(--glass-border);border-radius:12px;padding:14px;text-align:center}
 
   footer{margin-top:18px;color:var(--mut);font-size:13px;text-align:center}
-  @media (max-width:760px){
-    .header{flex-direction:column;align-items:center;gap:12px}
-    .rightCol{align-items:center}
-    .grid2{grid-template-columns:1fr}
-  }
+  @media (max-width:760px){ .header{flex-direction:column;align-items:center;gap:12px} .rightCol{align-items:center} .grid2{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
   <div class="wrap">
-    <!-- header -->
     <header class="header">
       <div class="leftHeader">
         <div class="logo" aria-hidden="true">
@@ -111,10 +95,7 @@
         <div class="titleBlock">
           <div class="nameRow">
             <div class="name">MOISES TRAJANO BITONIO</div>
-            <svg class="verified" viewBox="0 0 24 24" aria-hidden="true">
-              <defs><linearGradient id="vg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2aa4ff"/><stop offset="1" stop-color="#1877f2"/></linearGradient></defs>
-              <circle cx="12" cy="12" r="10" fill="url(#vg)"/><path d="M9.2 12.6l-1.7-1.7a1 1 0 10-1.4 1.4l2.4 2.4c.4.4 1 .4 1.4 0l6.1-6.1a1 1 0 10-1.4-1.4l-5.4 5.4z" fill="#fff"/>
-            </svg>
+            <svg class="verified" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="vg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2aa4ff"/><stop offset="1" stop-color="#1877f2"/></linearGradient></defs><circle cx="12" cy="12" r="10" fill="url(#vg)"/><path d="M9.2 12.6l-1.7-1.7a1 1 0 10-1.4 1.4l2.4 2.4c.4.4 1 .4 1.4 0l6.1-6.1a1 1 0 10-1.4-1.4l-5.4 5.4z" fill="#fff"/></svg>
           </div>
           <div class="sub">Midman Service • Safe trades with trust & transparency</div>
         </div>
@@ -138,84 +119,82 @@
       </div>
     </header>
 
-    <!-- order card -->
+    <!-- Main buy / order card -->
     <main class="card" aria-live="polite">
       <div class="h2">Create Midman Request</div>
 
       <div style="display:grid;gap:10px">
-        <div>
-          <label class="label">Buyer Name</label>
-          <input id="buyer" class="input" placeholder="Your full name">
-        </div>
-
-        <div>
-          <label class="label">Seller Name</label>
-          <input id="seller" class="input" placeholder="Seller full name / FB name">
-        </div>
+        <div><label class="label">Buyer Name</label><input id="buyer" class="input" placeholder="Your full name"></div>
+        <div><label class="label">Seller Name</label><input id="seller" class="input" placeholder="Seller full name / FB name"></div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <div>
-            <label class="label">Game</label>
-            <input id="game" class="input" placeholder="e.g., MIR4 • MLBB • Free Fire">
-          </div>
-
-          <div>
-            <label class="label">Amount (₱)</label>
-            <input id="amount" class="input" inputmode="decimal" placeholder="e.g., 1500.00">
-          </div>
+          <div><label class="label">Game</label><input id="game" class="input" placeholder="e.g., MIR4 • MLBB • Free Fire"></div>
+          <div><label class="label">Amount (₱)</label><input id="amount" class="input" inputmode="decimal" placeholder="e.g., 1500.00"></div>
         </div>
 
         <div class="grid2" style="margin-top:6px">
-          <div class="smallBox">
-            <div style="font-size:12px;color:var(--mut)">Midman Fee</div>
-            <div id="feeVal" class="bigVal">—</div>
-          </div>
-          <div class="smallBox">
-            <div style="font-size:12px;color:var(--mut)">Total to Send</div>
-            <div id="totalVal" class="bigVal">—</div>
-          </div>
+          <div class="smallBox"><div style="font-size:12px;color:var(--mut)">Midman Fee</div><div id="feeVal" class="bigVal">—</div></div>
+          <div class="smallBox"><div style="font-size:12px;color:var(--mut)">Total to Send</div><div id="totalVal" class="bigVal">—</div></div>
         </div>
 
         <div class="actions">
           <button id="copyBtn" class="btn primary">📋 Copy Format</button>
+          <button id="buyBtn" class="btn ghost" disabled>💎 Buy</button>
+        </div>
+
+        <div class="hint">Enter amount and names. Copy the format or press Buy to create a local receipt (copied to clipboard).</div>
+
+        <!-- Track Order -->
+        <div class="trackBox" id="trackSection">
+          <div style="display:grid;grid-template-columns:1fr auto;gap:10px">
+            <input id="trackIn" class="input" placeholder="Enter Receipt ID (e.g., YMIR-XXXX)" />
+            <button id="trackBtn" class="btn ghost">Check</button>
+          </div>
+
+          <div id="trackOut" style="display:none;margin-top:10px">
+            <div class="chip" style="margin-bottom:8px">
+              <strong id="t_id">—</strong>
+              <span id="t_status" style="opacity:.9"></span>
+            </div>
+            <div style="display:grid;gap:6px;font-size:14px;color:var(--mut)">
+              <div>Server/Game: <span id="t_server" style="color:var(--txt)">—</span></div>
+              <div>Amount: <span id="t_qty" style="color:var(--txt)">—</span></div>
+              <div>Rate/Notes: <span id="t_rate" style="color:var(--txt)">—</span></div>
+              <div>Total: <span id="t_total" style="color:var(--txt)">—</span></div>
+              <div>Created: <span id="t_time" style="color:var(--txt)">—</span></div>
+            </div>
+
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <button id="btnPaid" class="btn ghost" style="background:#204c2f;color:#e7fff1">Buyer: I Paid</button>
+              <button id="btnDeliveredSecret" class="btn ghost" style="display:none">Delivered (secret)</button>
+            </div>
+            <div class="hint" style="margin-top:6px">Tip: Use the Receipt ID created when pressing Buy to check status on this device (local only).</div>
+          </div>
+
+          <div id="trackNone" class="hint" style="display:none;margin-top:8px">Walang record sa device na ’to.</div>
         </div>
       </div>
     </main>
 
-    <!-- BEFORE SENDING PAYMENT -->
-    <section class="card">
-      <div class="h2">📦 BEFORE SENDING PAYMENT (READ FIRST)</div>
-      <div class="notice">
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div><strong>SELLER:</strong> ✅ Send VALID ID + Selfie + Current Address (via DM) • ✅ No dummy / fake Facebook accounts</div>
-          <div><strong>💸 MIDMAN FEE:</strong> Below ₱1,000 → ₱50 • ₱1,000 and up → 5%</div>
-          <div><strong>Payment details:</strong> Will be shared by the midman (do not send payment until instructed).</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROCESS -->
+    <!-- Process & reminders -->
     <section class="card">
       <div class="h2">🛡️ MIDMAN PROCESS (Step-by-Step)</div>
-
       <div class="steps">
-        <div class="step"><div class="ico">💵</div><p><strong>Step 1:</strong> Buyer sends payment to midman (only after midman confirms request).</p></div>
-        <div class="step"><div class="ico">📧</div><p><strong>Step 2:</strong> Seller sends the account Gmail &amp; Password to the buyer (via DM).</p></div>
+        <div class="step"><div class="ico">💵</div><p><strong>Step 1:</strong> Buyer sends payment to midman (after midman confirms request).</p></div>
+        <div class="step"><div class="ico">📧</div><p><strong>Step 2:</strong> Seller sends the account Gmail & Password to the buyer (via DM).</p></div>
         <div class="step"><div class="ico">🎮</div><p><strong>Step 3:</strong> Buyer logs in and checks the account in-game.</p></div>
-        <div class="step"><div class="ico">📝</div><p><strong>Step 4:</strong> Buyer gives recovery email &amp; phone number to seller.</p></div>
-        <div class="step"><div class="ico">🔐</div><p><strong>Step 5:</strong> Seller updates the Gmail recoveries:<br>1️⃣ Add buyer’s phone number and email as recovery<br>2️⃣ Turn ON 2-Step Verification</p></div>
-        <div class="step"><div class="ico">🧹</div><p><strong>Step 6:</strong> Buyer secures the account (remove all devices and social binds).</p></div>
-        <div class="step"><div class="ico">📹</div><p><strong>Step 7:</strong> Seller sends video proof:<br>• Logging out in-game (PC &amp; Mobile)<br>• Removing Gmail from devices</p></div>
-        <div class="step"><div class="ico">✅</div><p><strong>Step 8:</strong> Once buyer confirms the account is safe → midman releases the payment.</p></div>
+        <div class="step"><div class="ico">📝</div><p><strong>Step 4:</strong> Buyer gives recovery email & phone to seller.</p></div>
+        <div class="step"><div class="ico">🔐</div><p><strong>Step 5:</strong> Seller updates recovery (add buyer, turn on 2FA).</p></div>
+        <div class="step"><div class="ico">📹</div><p><strong>Step 6:</strong> Seller sends video proof (logout, remove gmail from devices).</p></div>
+        <div class="step"><div class="ico">✅</div><p><strong>Step 7:</strong> Once buyer confirms → midman releases payment.</p></div>
       </div>
 
       <div style="margin-top:12px;border-top:1px dashed rgba(255,255,255,.03);padding-top:10px;color:var(--mut)">
-        <strong>⚠️ REMINDERS</strong>
+        <strong>⚠️ Reminders:</strong>
         <ul style="margin:8px 0 0 18px;line-height:1.4">
           <li>Gmail can still be recovered within 7–8 days.</li>
           <li>If the seller tries to recover the Gmail, they’ll be posted in groups.</li>
           <li>MM fee is non-refundable if the deal is canceled.</li>
-          <li>Midman is not responsible for accounts linked to multiple socials/devices.</li>
         </ul>
       </div>
     </section>
@@ -223,76 +202,209 @@
     <footer>© MoiPH Midman — MOISES TRAJANO BITONIO</footer>
   </div>
 
+  <!-- Popups -->
+  <div id="buyPopup">
+    <div class="cardPop">
+      <h3>Copied ✔</h3>
+      <p id="buyMsg"><strong>I-PASTE MO ITO SA MESSENGER KO.</strong><br>Open Messenger then paste the order message.</p>
+      <div id="buyOrderId" style="margin:10px 0 6px;font-weight:800"></div>
+      <button id="closePop" class="btn ghost" style="margin-top:8px">OK</button>
+    </div>
+  </div>
+
+  <div id="gcashPopup">
+    <div class="cardPop">
+      <h3>GCash number copied ✔</h3>
+      <p><strong id="gcashP">09162466318 — MOISES B.</strong><br>Paste sa GCash Express Send.</p>
+      <button id="gcashOk" class="btn ghost" style="margin-top:8px">OK</button>
+    </div>
+  </div>
+
+  <div id="qrPopup">
+    <div class="cardPop">
+      <h3>GCash QR</h3>
+      <p>Scan to pay • <strong>MOISES B.</strong></p>
+      <img src="gcash-qr.png" alt="GCash QR" style="max-width:86vw;max-height:60vh;border-radius:8px;border:1px solid rgba(255,255,255,.08)">
+      <div style="margin-top:12px"><button id="qrOk" class="btn ghost">Close</button></div>
+    </div>
+  </div>
+
+  <div id="goPopup">
+    <div class="cardPop">
+      <h3>GoTyme account copied ✔</h3>
+      <p><strong id="goP">014664932955 — MOISES BITONIO</strong><br>Paste sa GoTyme Send Money.</p>
+      <button id="goOk" class="btn ghost" style="margin-top:8px">OK</button>
+    </div>
+  </div>
+
+  <div id="goQRPopup">
+    <div class="cardPop">
+      <h3>GoTyme QR</h3>
+      <p>Scan to pay • <strong>MOISES BITONIO</strong></p>
+      <img src="gotyme-qr.png" alt="GoTyme QR" style="max-width:86vw;max-height:60vh;border-radius:8px;border:1px solid rgba(255,255,255,.08)">
+      <div style="margin-top:12px"><button id="goQROk" class="btn ghost">Close</button></div>
+    </div>
+  </div>
+
 <script>
-  // helper shortcuts
+(function(){
+  // Helpers & elements
   const $ = id => document.getElementById(id);
   const amtEl = $('amount'), feeEl = $('feeVal'), totEl = $('totalVal');
-  const copyBtn = $('copyBtn'), buyer = $('buyer'), seller = $('seller'), game = $('game');
+  const copyBtn = $('copyBtn'), buyBtn = $('buyBtn');
+  const buyer = $('buyer'), seller = $('seller'), game = $('game');
   const copyG = $('copyG'), gcashNum = $('gcashNum');
+  const buyPopup = $('buyPopup'), closePop = $('closePop'), buyOrderId = $('buyOrderId'), buyMsg = $('buyMsg');
+  const gcashPopup = $('gcashPopup'), gcashOk = $('gcashOk'), gcashP = $('gcashP');
+  const qrPopup = $('qrPopup'), qrOk = $('qrOk');
+  const goPopup = $('goPopup'), goOk = $('goOk'), goQRPopup = $('goQRPopup'), goQROk = $('goQROk');
 
-  function parseNum(v){ v = (v||'').toString().replace(/,/g,''); const n = parseFloat(v); return isFinite(n) ? n : 0; }
-  function peso(n){ return '₱' + Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); }
+  // Track storage
+  const STORE_KEY='ymir_orders_v2';
+  const loadOrders = () => { try{ return JSON.parse(localStorage.getItem(STORE_KEY)||'{}'); }catch{return{}} };
+  const saveOrders = m => { try{ localStorage.setItem(STORE_KEY, JSON.stringify(m)); }catch{} };
 
-  function computeFee(a){
-    if(!a || a <= 0) return {fee:0, total:0};
-    if(a < 1000) return {fee:50, total: a + 50};
-    const f = Math.round(a * 0.05 * 100) / 100;
-    return {fee: f, total: Math.round((a + f) * 100) / 100};
+  function parseNum(v){ v=(v||'').toString().replace(/,/g,'');const n=parseFloat(v);return isFinite(n)?n:0; }
+  function peso(n){ return '₱'+Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+  function computeFee(a){ if(!a||a<=0) return {fee:0,total:0}; if(a<1000) return {fee:50,total:a+50}; const f=Math.round(a*0.05*100)/100; return {fee:f,total:Math.round((a+f)*100)/100}; }
+
+  function refresh(){ const a=parseNum(amtEl.value); if(!a){ feeEl.textContent='—'; totEl.textContent='—'; buyBtn.disabled=true; return; } const {fee,total}=computeFee(a); feeEl.textContent=peso(fee); totEl.textContent=peso(total); buyBtn.disabled = !(seller.value.trim().length>0 && buyer.value.trim().length>0 && game.value.trim().length>0); }
+
+  amtEl && amtEl.addEventListener('input', ()=>{ amtEl.value=amtEl.value.replace(/[^\d.]/g,''); refresh(); });
+  [buyer,seller,game].forEach(el => el && el.addEventListener('input', refresh));
+  refresh();
+
+  // Build message
+  function genRID(){
+    const t = Date.now().toString(36).toUpperCase();
+    const r = Math.random().toString(36).slice(2,6).toUpperCase();
+    return `YMIR-${t}-${r}`;
   }
-
-  function refresh(){
+  function buildMsg(rid=null){
     const a = parseNum(amtEl.value);
-    if(!a){ feeEl.textContent = '—'; totEl.textContent = '—'; return; }
-    const {fee, total} = computeFee(a);
-    feeEl.textContent = peso(fee);
-    totEl.textContent = peso(total);
-  }
-
-  amtEl.addEventListener('input', ()=>{ amtEl.value = amtEl.value.replace(/[^\d.]/g,''); refresh(); });
-
-  function buildMsg(){
-    const a = parseNum(amtEl.value);
-    const {fee, total} = computeFee(a);
-    return [
+    const {fee,total} = computeFee(a);
+    const lines = [
       'MIDMAN REQUEST',
-      'Buyer: ' + (buyer.value.trim() || '[Buyer name]'),
-      'Seller: ' + (seller.value.trim() || '[Seller name]'),
-      'Game: ' + (game.value.trim() || '[Game name]'),
+      'Buyer: ' + (buyer.value.trim()||'[Buyer name]'),
+      'Seller: ' + (seller.value.trim()||'[Seller name]'),
+      'Game/Server: ' + (game.value.trim()||'[Game name]'),
       '',
-      'Amount: ' + (a ? peso(a) : '[amount]'),
-      'Midman Fee: ' + (a ? peso(fee) : '[fee]'),
-      'Total to Send: ' + (a ? peso(total) : '[total]'),
+      'Amount: ' + (a? peso(a) : '[amount]'),
+      'Midman Fee: ' + (a? peso(fee) : '[fee]'),
+      'Total to Send: ' + (a? peso(total) : '[total]'),
       '',
       'GCash: ' + gcashNum.textContent.trim() + ' — MOISES B.',
       '',
-      'I agree to follow the Midman Process steps.'
-    ].join('\n');
+      'I agree to follow the Midman Process steps.',
+    ];
+    if(rid) lines.splice(0,0,`Receipt ID: ${rid}`);
+    return lines.join('\n');
   }
 
+  // Copy format button
   copyBtn.addEventListener('click', async ()=>{
-    const msg = buildMsg();
-    try{
-      await navigator.clipboard.writeText(msg);
-      copyBtn.textContent = '✔ Copied';
-      setTimeout(()=> copyBtn.textContent = '📋 Copy Format', 1400);
-    }catch(e){
-      alert('Copy failed. You can still select the text and copy manually.');
-    }
+    const rid = null; // not creating receipt for copy-only
+    const msg = buildMsg(rid);
+    try{ await navigator.clipboard.writeText(msg); copyBtn.textContent='✔ Copied'; setTimeout(()=>copyBtn.textContent='📋 Copy Format',1400); }catch{ alert('Copy failed.'); }
   });
 
+  // BUY -> create local receipt, copy text, show popup
+  buyBtn.addEventListener('click', async ()=>{
+    const a = parseNum(amtEl.value); if(!a) return refresh();
+    const rid = genRID();
+    const {fee,total} = computeFee(a);
+    const totalVal = total;
+    const msg = buildMsg(rid);
+    // copy
+    try{ await navigator.clipboard.writeText(msg); }catch{}
+    // save local
+    const map = loadOrders();
+    map[rid] = { status:'PENDING', server: game.value.trim(), amount: a, fee, total: totalVal, buyer: buyer.value.trim(), seller: seller.value.trim(), time: new Date().toISOString() };
+    saveOrders(map);
+    // show popup
+    buyOrderId.textContent = `Receipt ID: ${rid}`;
+    buyMsg.innerHTML = `<strong>COPY AND PASTE THIS TO MESSENGER / CHAT.</strong><br><small>Receipt ID: ${rid}</small>`;
+    buyPopup.style.display='grid';
+    // prefill track area
+    $('trackIn').value = rid;
+    showTrack(rid, map[rid]);
+  });
+
+  closePop.addEventListener('click', ()=> buyPopup.style.display='none');
+  gcashOk.addEventListener('click', ()=> gcashPopup.style.display='none');
+  qrOk.addEventListener('click', ()=> qrPopup.style.display='none');
+  goOk.addEventListener('click', ()=> goPopup.style.display='none');
+  goQROk && goQROk.addEventListener('click', ()=> goQRPopup.style.display='none');
+
+  // copy gcash number
   copyG.addEventListener('click', async ()=>{
     const n = gcashNum.textContent.trim();
-    try{
-      await navigator.clipboard.writeText(n);
-      copyG.textContent = '✔';
-      setTimeout(()=> copyG.textContent = 'Copy', 1200);
-    }catch{
-      alert('Copy failed');
+    try{ await navigator.clipboard.writeText(n); gcashPopup.style.display='grid'; }catch{ alert('Copy failed.'); }
+  });
+
+  // Track UI
+  function setStatusUI(status){
+    const s = $('t_status');
+    s.textContent = status;
+    s.style.color = status==='DELIVERED' ? '#ff8aa0' : status==='PAID' ? '#22cf74' : '#ffd64d';
+  }
+  function showTrack(id, rec){
+    if(rec){
+      $('trackOut').style.display='block';
+      $('trackNone').style.display='none';
+      $('t_id').textContent = id;
+      setStatusUI(rec.status);
+      $('t_server').textContent = rec.server || '—';
+      $('t_qty').textContent = rec.amount ? peso(rec.amount) : '—';
+      $('t_rate').textContent = rec.fee ? peso(rec.fee) : '—';
+      $('t_total').textContent = rec.total ? peso(rec.total) : '—';
+      $('t_time').textContent = rec.time ? new Date(rec.time).toLocaleString() : '—';
+    }else{
+      $('trackOut').style.display='none';
+      $('trackNone').style.display='block';
+    }
+  }
+
+  // prefill query ?rid=...
+  (function(){
+    const params = new URLSearchParams(location.search);
+    const rid = params.get('rid');
+    if(rid){
+      $('trackIn').value = rid;
+      const rec = loadOrders()[rid];
+      showTrack(rid, rec);
+    }
+  })();
+
+  $('trackBtn').addEventListener('click', ()=>{
+    const id = $('trackIn').value.trim();
+    const rec = loadOrders()[id];
+    showTrack(id, rec);
+  });
+
+  $('btnPaid').addEventListener('click', ()=>{
+    const id = $('trackIn').value.trim();
+    const map=loadOrders(); if(!map[id]) return alert('Record not found'); map[id].status='PAID'; saveOrders(map); setStatusUI('PAID');
+  });
+
+  // secret: 6 taps on logo to set DELIVERED for current trackIn
+  let tapCount=0, tapTimer=null;
+  document.querySelector('.logo').addEventListener('click', ()=> {
+    tapCount++; clearTimeout(tapTimer);
+    tapTimer=setTimeout(()=>tapCount=0,900);
+    if(tapCount>=6){
+      tapCount=0;
+      const id = $('trackIn').value.trim();
+      const map=loadOrders(); if(!map[id]) return;
+      map[id].status='DELIVERED'; saveOrders(map); setStatusUI('DELIVERED');
+      alert('Marked as DELIVERED (local)');
     }
   });
 
-  // init
+  // init UI values
   refresh();
+})();
 </script>
 </body>
 </html>
