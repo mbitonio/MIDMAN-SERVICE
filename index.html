@@ -10,7 +10,7 @@
   --txt:#fff7fb; --mut:#ccb9c1; --mut2:#a8989f;
   --green:#21d072; --blue:#1877f2; --discord:#5865f2;
   --ink:#09060a; --red1:#1a0f14; --red2:#120a10;
-  --border: rgba(255,100,140,.18); --ring: conic-gradient(#ff2b63,#ff6ea0,#ff2b63);
+  --border: rgba(255,100,140,.18);
 }
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--ink);color:var(--txt);font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif;min-height:100%}
@@ -27,8 +27,7 @@ body::before{
 .wrap{max-width:880px;margin:auto;padding:18px 14px 120px}
 .header{display:grid;place-items:center;margin-top:6px}
 .logo{width:min(42vw,160px);aspect-ratio:1/1;border-radius:999px;position:relative;display:grid;place-items:center;background:radial-gradient(120px 110px at 50% 50%, #0e0a0d 40%, #000 100%);box-shadow:0 0 0 8px rgba(0,0,0,.55)}
-.ring{position:absolute;inset:10px;border-radius:999px;background:var(--ring);filter:blur(.55px);-webkit-mask:radial-gradient(circle, transparent 61.5%, #000 63%);mask:radial-gradient(circle, transparent 61.5%, #000 63%);animation:spin 9s linear infinite;opacity:.55}
-@keyframes spin{to{transform:rotate(360deg)}}
+/* ring removed per request */
 .logo img{width:82%;border-radius:999px;box-shadow:0 0 18px rgba(255,40,100,.28)}
 .brand{display:flex;gap:10px;align-items:center;justify-content:center;margin:10px 0 4px;font-weight:800;font-size:26px;text-shadow:0 0 10px rgba(255,70,120,.25)}
 .badge{width:22px;height:22px;display:inline-block;filter: drop-shadow(0 0 10px rgba(24,119,242,.45))}
@@ -70,9 +69,8 @@ body::before{
   <div class="wrap">
     <!-- header -->
     <div class="header">
-      <div class="logo">
-        <div class="ring"></div>
-        <!-- optional logo.png in same folder -->
+      <div class="logo" title="Logo">
+        <!-- ring removed -->
         <img src="logo.png" alt="Logo" onerror="this.outerHTML='<div style=&quot;font-weight:900;font-size:40px;&quot;>MOI</div>'">
       </div>
       <div class="brand">
@@ -99,30 +97,30 @@ body::before{
       </div>
     </div>
 
-    <!-- Calculator -->
+    <!-- Order Format (calculator removed) -->
     <div class="section">
-      <div class="h2">Midman Fee Calculator</div>
-      <div class="label">Enter Amount (₱)</div>
-      <input id="amt" class="in" inputmode="decimal" placeholder="e.g. 1500.00" autocomplete="off">
-      <div class="grid2" style="margin-top:10px">
-        <div class="box"><h5>Fee</h5><div id="feeOut" class="big">—</div></div>
-        <div class="box"><h5>Total to Send</h5><div id="totalOut" class="big">—</div></div>
-      </div>
-      <div class="note">Rates: Below ₱1,000 → ₱50 • ₱1,000 and up → 5%</div>
+      <div class="h2">Copy Order Format</div>
 
-      <div class="h2" style="margin-top:14px">Copy Order Format</div>
       <div class="label">Buyer Name</div>
       <input id="buyer" class="in" placeholder="Your full name">
+
       <div class="label" style="margin-top:8px">Seller Name</div>
       <input id="seller" class="in" placeholder="Seller full name / FB name">
-      <div class="label" style="margin-top:8px">Item / Account Details</div>
-      <input id="item" class="in" placeholder="e.g., MIR4 account, server, CP, etc.">
+
+      <div class="label" style="margin-top:8px">Game</div>
+      <input id="game" class="in" placeholder="e.g., MIR4 • Mobile Legends • MLBB • Free Fire">
+
+      <div class="label" style="margin-top:8px">Account / Item Details</div>
+      <input id="item" class="in" placeholder="e.g., Level 60 account, IGN, CP, skins, etc.">
 
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
         <button id="copyBtn" class="btn copy">📋 Copy Format</button>
         <a id="msgBtn" class="btn pri" href="#" target="_blank" rel="noopener">💬 Send to Messenger</a>
       </div>
-      <div class="note">GCash: <b>09162466318 — MOISES BITONIO</b></div>
+
+      <div class="note" style="margin-top:10px">
+        <strong>Payment details:</strong> Will be provided by the midman after you confirm the request.
+      </div>
     </div>
 
     <!-- Before Payment -->
@@ -131,7 +129,7 @@ body::before{
       <div class="card">
         <div class="kv"><strong>SELLER:</strong> ✅ Send VALID ID + Selfie + Current Address (via DM) • ✅ No dummy / fake Facebook accounts</div>
         <div class="kv" style="margin-top:6px"><strong>💸 MIDMAN FEE:</strong> Below ₱1,000 → ₱50 • ₱1,000 and up → 5%</div>
-        <div class="kv" style="margin-top:6px"><strong>GCASH DETAILS:</strong> 📱 09162466318 • 👤 MOISES BITONIO</div>
+        <div class="kv" style="margin-top:6px"><strong>Payment details:</strong> Will be shared by midman (do not send payment until instructed).</div>
       </div>
     </div>
 
@@ -142,7 +140,7 @@ body::before{
       <div class="card">
         <div class="step">
           <div class="ico"><span class="em">💵</span></div>
-          <div><b>Step 1:</b> Buyer sends payment to midman.</div>
+          <div><b>Step 1:</b> Buyer sends payment to midman (only after midman confirms request).</div>
         </div>
         <div class="step">
           <div class="ico"><span class="em">📧</span></div>
@@ -196,46 +194,28 @@ body::before{
   </div>
 
 <script>
-const amt = document.getElementById('amt');
-const feeOut = document.getElementById('feeOut');
-const totalOut = document.getElementById('totalOut');
 const buyer = document.getElementById('buyer');
 const seller = document.getElementById('seller');
+const game = document.getElementById('game');
 const item = document.getElementById('item');
 const copyBtn = document.getElementById('copyBtn');
 const msgBtn = document.getElementById('msgBtn');
 
-function parseAmt(v){ return parseFloat((v||'').toString().replace(/,/g,'')) || 0; }
 function peso(n){ return '₱' + (Number(n)||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); }
 
-function compute(){
-  const a = parseAmt(amt.value);
-  if(a<=0){ feeOut.textContent='—'; totalOut.textContent='—'; return {a,fee:0,total:0}; }
-  const fee = a < 1000 ? 50 : a*0.05;
-  const total = a + fee;
-  feeOut.textContent = peso(fee);
-  totalOut.textContent = peso(total);
-  return {a,fee,total};
-}
-amt.addEventListener('input', ()=>{
-  // keep only numbers and dot
-  amt.value = amt.value.replace(/[^\d.]/g,'');
-  compute();
-});
-
 function buildMessage(){
-  const {a,fee,total} = compute();
   const lines = [
     'MIDMAN REQUEST',
-    'Buyer: ' + (buyer.value.trim()||''),
-    'Seller: ' + (seller.value.trim()||''),
-    'Item: ' + (item.value.trim()||''),
+    'Buyer: ' + (buyer.value.trim()||'[Buyer name]'),
+    'Seller: ' + (seller.value.trim()||'[Seller name]'),
+    'Game: ' + (game.value.trim()||'[Game name]'),
+    'Item / Account: ' + (item.value.trim()||'[Details (level, IGN, CP, skins, etc.)]'),
     '',
-    'Amount: ' + peso(a),
-    'Midman Fee: ' + peso(fee) + (a<1000?' (flat 50)':' (5%)'),
-    'Total to Send: ' + peso(total),
+    'Amount: ' + '[amount here]',
+    'Midman Fee: ' + '[fee - will be confirmed by midman]',
+    'Total to Send: ' + '[total amount]',
     '',
-    'GCash: 09162466318 — MOISES BITONIO',
+    'Payment details: Will be provided by the midman after confirming the request.',
     '',
     'I agree to follow the Midman Process steps.'
   ];
@@ -254,7 +234,6 @@ msgBtn.addEventListener('click', (e)=>{
   const text = encodeURIComponent(buildMessage());
   msgBtn.href = 'https://m.me/mbitonio?text=' + text;
 });
-compute();
 </script>
 </body>
 </html>
